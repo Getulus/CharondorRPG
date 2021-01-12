@@ -1,7 +1,9 @@
 package com.getulus.charondor.gamebody.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -10,9 +12,13 @@ import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @DynamicUpdate
 @Entity
+@Data
 public class Monster extends Character{
+    private int lootedGold;
+    private String name;
 
     @Builder(toBuilder = true)
     public Monster(long ID, String type, int level, int health, int soulEnergy,
@@ -31,7 +37,6 @@ public class Monster extends Character{
     }
 
 
-    private int lootedGold;
-    private String name;
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class MonsterList {
     public Monster currentMonster;
@@ -16,14 +17,27 @@ public class MonsterList {
     @Autowired
     public MonsterRepository monsterRepository;
 
-    public Monster getCurrentMonster() {
+    public Monster getMonsterByName() {
         if (monsterRepository.getPlayerByName("Werewolf").isPresent()) {
             return monsterRepository.getPlayerByName("Werewolf").get();
         }
         return null;
     }
 
-    public void addPlayer(Monster monster){
+    private void getAllMonster() {
+        monsters = monsterRepository.findAllByOrderByName();
+        System.out.println(monsters.toString());
+    }
+
+    public Monster getRandomMonster(){
+        if (monsters == null) {
+            getAllMonster();
+        }
+        currentMonster =  monsters.get(0);
+        return currentMonster;
+    }
+
+    public void addMonster(Monster monster){
         monsters.add(monster);
     }
 

@@ -99,6 +99,7 @@ public class GamebodyApplication {
 
 
             monsterRepository.saveAndFlush(werewolf);
+            System.out.println(monsterList.toString());
 
         };
 
