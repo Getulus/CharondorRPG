@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CharondorRPG.iml" filepath="$PROJECT_DIR$/.idea/CharondorRPG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamebody/gamebody.iml" filepath="$PROJECT_DIR$/gamebody/gamebody.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
+    </modules>
+  </component>
+</project>
