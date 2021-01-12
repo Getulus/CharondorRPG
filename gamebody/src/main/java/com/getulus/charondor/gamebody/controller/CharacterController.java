@@ -22,7 +22,7 @@ public class CharacterController {
 
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/player")
+    @GetMapping("/character/player")
     public Player getCurrentPlayer(HttpServletResponse response){
         try {
             response.setStatus(200);
