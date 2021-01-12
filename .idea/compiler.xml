@@ -9,9 +9,11 @@
         <module name="gamebody" />
         <module name="server" />
         <module name="gateway" />
+        <module name="actions" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="actions" target="11" />
       <module name="gamebody" target="11" />
       <module name="gateway" target="11" />
       <module name="server" target="11" />
@@ -19,6 +21,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="actions" options="-parameters" />
       <module name="gamebody" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="server" options="-parameters" />
