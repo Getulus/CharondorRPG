@@ -1,8 +1,11 @@
 package com.getulus.charondor.gamebody;
 
+import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.repository.MonsterRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import com.getulus.charondor.gamebody.service.HTTPConnection;
+import com.getulus.charondor.gamebody.service.MonsterList;
 import com.getulus.charondor.gamebody.service.PlayerList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +32,12 @@ public class GamebodyApplication {
 
     @Autowired
     PlayerRepository playerRepository;
+
+    @Autowired
+    MonsterRepository monsterRepository;
+
+    @Autowired
+    MonsterList monsterList;
 
     @Autowired
     PlayerList playerList;
@@ -69,6 +78,29 @@ public class GamebodyApplication {
             playerRepository.saveAndFlush(getulus);
             //playerList.addPlayer(playerRepository.getPlayerByName("Getulus").get());
             System.out.println(playerList.toString());
+
+            Monster werewolf = Monster.builder()
+                    .agility(8)
+                    .armor(150)
+                    .attackValue(40)
+                    .criticalChance(20)
+                    .defenseValue(12)
+                    .health(200)
+                    .level(1)
+                    .magicResistance(5)
+                    .stamina(25)
+                    .strength(30)
+                    .soulEnergy(70)
+                    .type("Warrior")
+                    .wisdom(3)
+                    .name("Werewolf")
+                    .lootedGold(40)
+                    .build();
+
+
+            monsterRepository.saveAndFlush(werewolf);
+            System.out.println(monsterList.toString());
+
         };
 
     }

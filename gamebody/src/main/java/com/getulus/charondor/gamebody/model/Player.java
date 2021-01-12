@@ -1,6 +1,7 @@
 package com.getulus.charondor.gamebody.model;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @DynamicUpdate
 @Entity
+@Data
 public class Player extends Character {
 
     @Builder(toBuilder = true)
