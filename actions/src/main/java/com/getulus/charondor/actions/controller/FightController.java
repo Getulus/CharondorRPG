@@ -2,11 +2,9 @@ package com.getulus.charondor.actions.controller;
 
 
 import com.getulus.charondor.actions.ExceptionLog;
+import com.getulus.charondor.actions.service.FightSimulator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,12 +14,15 @@ public class FightController {
     @Autowired
     ExceptionLog exceptionLog;
 
+    @Autowired
+    FightSimulator fightSimulator;
+
     @CrossOrigin(origins = "*")
     @GetMapping("/fight/all-damage")
-    public int getAllDamage(HttpServletResponse response){
+    public double getAllDamage(HttpServletResponse response){
         try {
             response.setStatus(200);
-            return 100;
+            return fightSimulator.resolveFight("player");
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
