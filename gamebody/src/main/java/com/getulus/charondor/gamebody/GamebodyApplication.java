@@ -76,6 +76,7 @@ public class GamebodyApplication {
 
 
             playerRepository.saveAndFlush(getulus);
+            playerList.setCurrentPlayer(getulus);
             //playerList.addPlayer(playerRepository.getPlayerByName("Getulus").get());
             System.out.println(playerList.toString());
 
