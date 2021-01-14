@@ -12,5 +12,4 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     Optional<Player> getPlayerByName(String name);
 
-
 }

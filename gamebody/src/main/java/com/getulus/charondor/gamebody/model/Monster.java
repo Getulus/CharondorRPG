@@ -17,18 +17,18 @@ import java.util.Set;
 @Entity
 @Data
 public class Monster extends Character{
-    private int lootedGold;
+    private double lootedGold;
     private String name;
 
     @Builder(toBuilder = true)
-    public Monster(long ID, String type, int level, int health, int soulEnergy,
-                  int attackValue, int defenseValue, int criticalChance,
-                  int armor, int magicResistance,
-                  int stamina, int wisdom, int strength, int agility, String name,
-                  Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs, int lootedGold)
+    public Monster(long ID, String type, double level, double currentHealth, double maxHealth, double soulEnergy,
+                  double attackValue, double defenseValue, double criticalChance,
+                  double armor, double magicResistance,
+                  double stamina, double wisdom, double strength, double agility, String name,
+                  Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs, double lootedGold)
     {
         super(
-                ID, type, level, health, soulEnergy, skills,   attackValue, defenseValue,
+                ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
                 criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility
         );
 

@@ -23,11 +23,12 @@ public abstract class Character {
 
 
     protected String type;
-    protected int level;
+    protected double level;
 
 
-    protected int health;
-    protected int soulEnergy;
+    protected double currentHealth;
+    protected double maxHealth;
+    protected double soulEnergy;
 
     @Singular
     @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -37,11 +38,11 @@ public abstract class Character {
     protected Set<Skill> skills;
 
 
-    protected int attackValue;
-    protected int defenseValue;
-    protected int criticalChance;
-    protected int armor;
-    protected int magicResistance;
+    protected double attackValue;
+    protected double defenseValue;
+    protected double criticalChance;
+    protected double armor;
+    protected double magicResistance;
 
     @Singular
     @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -60,10 +61,10 @@ public abstract class Character {
 
 
     //attributes
-    protected int stamina;
-    protected int wisdom;
-    protected int strength;
-    protected int agility;
+    protected double stamina;
+    protected double wisdom;
+    protected double strength;
+    protected double agility;
 
 
 }

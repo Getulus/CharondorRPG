@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CharondorRPG.iml" filepath="$PROJECT_DIR$/.idea/CharondorRPG.iml" />
-      <module fileurl="file://$PROJECT_DIR$/actions/actions.iml" filepath="$PROJECT_DIR$/actions/actions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fight/fight.iml" filepath="$PROJECT_DIR$/fight/fight.iml" />
       <module fileurl="file://$PROJECT_DIR$/gamebody/gamebody.iml" filepath="$PROJECT_DIR$/gamebody/gamebody.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
