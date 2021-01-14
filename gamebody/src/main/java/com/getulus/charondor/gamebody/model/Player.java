@@ -42,11 +42,22 @@ public class Player extends Character {
     private double experienceNeededForNextLevel;
     private double gold;
 
-    /*
-    @Singular
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<Item> items;
-     */
+
+    public void increaseAttributesByLeveling() {
+        this.level++;
+
+        this.agility += 2;
+        this.strength += 3;
+        this.wisdom += 1;
+        this.stamina += 3;
+
+        this.armor += 30;
+        this.attackValue += 5;
+        this.defenseValue += 2;
+
+        this.soulEnergy += 20;
+        this.maxHealth += 100;
+
+    }
+
 }

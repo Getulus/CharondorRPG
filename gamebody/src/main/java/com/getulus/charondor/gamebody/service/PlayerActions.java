@@ -1,5 +1,6 @@
 package com.getulus.charondor.gamebody.service;
 
+import com.getulus.charondor.gamebody.model.Player;
 import com.getulus.charondor.gamebody.model.Skill;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
@@ -81,8 +82,8 @@ public class PlayerActions implements CharacterActions{
     }
 
     private void leveling() {
-        double currentLevel = playerList.getCurrentPlayer().getLevel();
-        playerList.getCurrentPlayer().setLevel(currentLevel + 1);
+        playerList.getCurrentPlayer().increaseAttributesByLeveling();
     }
+
 
 }
