@@ -3,6 +3,7 @@ package com.getulus.charondor.gamebody.controller;
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
 import com.getulus.charondor.gamebody.model.Player;
 import com.getulus.charondor.gamebody.service.CombatActions;
+import com.getulus.charondor.gamebody.service.CombatLogList;
 import com.getulus.charondor.gamebody.service.PlayerActions;
 import com.getulus.charondor.gamebody.service.PlayerList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
@@ -23,6 +24,9 @@ public class CombatController {
     @Autowired
     CombatActions combatActions;
 
+    @Autowired
+    CombatLogList combatLogList;
+
 
     @CrossOrigin(origins = "*")
     @GetMapping("/action/combat")
@@ -30,6 +34,24 @@ public class CombatController {
         try {
             response.setStatus(200);
             combatActions.resolveCombat();
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/action/combat-log")
+    public List<CombatLogTemplate> getCombatLog(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            return combatLogList.getCombatLog();
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
