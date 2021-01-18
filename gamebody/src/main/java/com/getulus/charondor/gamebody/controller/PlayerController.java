@@ -1,27 +1,37 @@
-package com.getulus.charondor.actions.controller;
+package com.getulus.charondor.gamebody.controller;
 
 
-import com.getulus.charondor.actions.ExceptionLog;
+import com.getulus.charondor.gamebody.logger.ExceptionLog;
+import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.service.PlayerActions;
+import com.getulus.charondor.gamebody.service.PlayerList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-public class FightController {
+public class PlayerController {
+
+    @Autowired
+    PlayerList playerList;
 
     @Autowired
     ExceptionLog exceptionLog;
 
+    @Autowired
+    PlayerActions playerActions;
+
+
     @CrossOrigin(origins = "*")
-    @GetMapping("/fight/all-damage")
-    public int getAllDamage(HttpServletResponse response){
+    @GetMapping("/character/player")
+    public Player getCurrentPlayer(HttpServletResponse response){
         try {
             response.setStatus(200);
-            return 100;
+            return playerList.getCurrentPlayer();
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -32,5 +42,6 @@ public class FightController {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
     }
+
 
 }

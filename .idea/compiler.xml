@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -9,11 +10,12 @@
         <module name="gamebody" />
         <module name="server" />
         <module name="gateway" />
-        <module name="actions" />
+        <module name="fighting" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="actions" target="11" />
+      <module name="fight" target="11" />
+      <module name="fighting" target="11" />
       <module name="gamebody" target="11" />
       <module name="gateway" target="11" />
       <module name="server" target="11" />
@@ -21,7 +23,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="actions" options="-parameters" />
+      <module name="fight" options="-parameters" />
+      <module name="fighting" options="-parameters" />
       <module name="gamebody" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="server" options="-parameters" />

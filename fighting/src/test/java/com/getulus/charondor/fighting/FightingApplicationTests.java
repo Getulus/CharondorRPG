@@ -1,10 +1,10 @@
-package com.getulus.charondor.actions;
+package com.getulus.charondor.fighting;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ActionsApplicationTests {
+class FightingApplicationTests {
 
     @Test
     void contextLoads() {

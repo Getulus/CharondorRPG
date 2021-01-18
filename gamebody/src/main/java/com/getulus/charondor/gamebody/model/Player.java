@@ -17,14 +17,14 @@ import java.util.Set;
 public class Player extends Character {
 
     @Builder(toBuilder = true)
-    public Player(long ID, String type, int level, int health, int soulEnergy,
-                  int attackValue, int defenseValue, int criticalChance,
-                  int armor, int magicResistance,
-                  int stamina, int wisdom, int strength, int agility, String name, int experiencePoints,
-                  int experienceNeededForNextLevel, int gold, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
+    public Player(long ID, String type, double level, double currentHealth, double maxHealth, double soulEnergy,
+                  double attackValue, double defenseValue, double criticalChance,
+                  double armor, double magicResistance,
+                  double stamina, double wisdom, double strength, double agility, String name, double experiencePoints,
+                  double experienceNeededForNextLevel, double gold, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
     {
         super(
-                ID, type, level, health, soulEnergy, skills,   attackValue, defenseValue,
+                ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
                 criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility
         );
 
@@ -38,15 +38,26 @@ public class Player extends Character {
 
 
     private String name;
-    private int experiencePoints;
-    private int experienceNeededForNextLevel;
-    private int gold;
+    private double experiencePoints;
+    private double experienceNeededForNextLevel;
+    private double gold;
 
-    /*
-    @Singular
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<Item> items;
-     */
+
+    public void increaseAttributesByLeveling() {
+        this.level++;
+
+        this.agility += 2;
+        this.strength += 3;
+        this.wisdom += 1;
+        this.stamina += 3;
+
+        this.armor += 30;
+        this.attackValue += 5;
+        this.defenseValue += 2;
+
+        this.soulEnergy += 20;
+        this.maxHealth += 100;
+
+    }
+
 }

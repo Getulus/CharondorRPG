@@ -3,6 +3,7 @@ package com.getulus.charondor.gamebody.service;
 import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
 import com.getulus.charondor.gamebody.repository.MonsterRepository;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 
 @Service
+@Data
 public class MonsterList {
     public Monster currentMonster;
     public List<Monster> monsters;

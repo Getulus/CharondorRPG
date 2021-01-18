@@ -26,12 +26,6 @@ public class PlayerList {
     private Monster currentEnemy;
     private List<Player> players;
 
-    public Player getCurrentPlayer() {
-        if (playerRepository.getPlayerByName("Getulus").isPresent()) {
-            return playerRepository.getPlayerByName("Getulus").get();
-        }
-        return null;
-    }
 
     public void addPlayer(Player player){
         players.add(player);

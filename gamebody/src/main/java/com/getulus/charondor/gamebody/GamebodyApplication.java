@@ -60,7 +60,8 @@ public class GamebodyApplication {
                     .attackValue(50)
                     .criticalChance(12)
                     .defenseValue(20)
-                    .health(500)
+                    .maxHealth(500)
+                    .currentHealth(500)
                     .level(1)
                     .magicResistance(10)
                     .stamina(30)
@@ -69,13 +70,14 @@ public class GamebodyApplication {
                     .type("Warrior")
                     .wisdom(5)
                     .name("Getulus")
-                    .experienceNeededForNextLevel(30)
+                    .experienceNeededForNextLevel(80)
                     .gold(0)
                     .experiencePoints(0)
                     .build();
 
 
             playerRepository.saveAndFlush(getulus);
+            playerList.setCurrentPlayer(getulus);
             //playerList.addPlayer(playerRepository.getPlayerByName("Getulus").get());
             System.out.println(playerList.toString());
 
@@ -85,7 +87,8 @@ public class GamebodyApplication {
                     .attackValue(40)
                     .criticalChance(20)
                     .defenseValue(12)
-                    .health(200)
+                    .maxHealth(200)
+                    .currentHealth(200)
                     .level(1)
                     .magicResistance(5)
                     .stamina(25)

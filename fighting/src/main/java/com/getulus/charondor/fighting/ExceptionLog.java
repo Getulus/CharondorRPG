@@ -1,4 +1,4 @@
-package com.getulus.charondor.actions;
+package com.getulus.charondor.fighting;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.getulus.charondor</groupId>
-    <artifactId>actions</artifactId>
+    <artifactId>fighting</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>actions</name>
+    <name>fighting</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
