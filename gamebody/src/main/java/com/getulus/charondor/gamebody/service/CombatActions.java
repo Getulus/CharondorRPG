@@ -1,6 +1,8 @@
 package com.getulus.charondor.gamebody.service;
 
+import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
+import com.getulus.charondor.gamebody.service.Items.ItemList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class CombatActions {
 
     RestTemplate restTemplate = new RestTemplate();
 
+    @Autowired
+    ItemList itemList;
+
 
     public void resolveCombat() {
         fight();
@@ -37,7 +42,8 @@ public class CombatActions {
         } else {
             playerActions.earnGold();
             playerActions.earnExperience();
-            playerActions.loot();
+            itemList.setLootedItems(monsterList.getCurrentMonster().getLevel());
+            playerActions.loot(itemList.getAvailableItems());
         }
 
         playerRepository.save(playerList.getCurrentPlayer());

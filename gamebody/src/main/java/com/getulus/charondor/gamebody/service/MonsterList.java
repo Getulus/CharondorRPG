@@ -2,12 +2,18 @@ package com.getulus.charondor.gamebody.service;
 
 import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.advantures.Adventure;
+import com.getulus.charondor.gamebody.repository.AdventureRepository;
 import com.getulus.charondor.gamebody.repository.MonsterRepository;
+import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
 @Service
@@ -17,25 +23,31 @@ public class MonsterList {
     public List<Monster> monsters;
 
     @Autowired
+    AdventureList adventureList;
+
+    @Autowired
     public MonsterRepository monsterRepository;
 
     public Monster getMonsterByName() {
-        if (monsterRepository.getPlayerByName("Werewolf").isPresent()) {
-            return monsterRepository.getPlayerByName("Werewolf").get();
+        if (monsterRepository.getMonsterByName("Werewolf").isPresent()) {
+            return monsterRepository.getMonsterByName("Werewolf").get();
         }
         return null;
     }
 
-    private void getAllMonster() {
-        monsters = monsterRepository.findAllByOrderByName();
-        System.out.println(monsters.toString());
+    private void getAllMonsterByAdventure() {
+        Adventure currentAdventure = adventureList.getCurrentAdventure();
+        int startLevel = currentAdventure.getStartLevel();
+        int endLevel = currentAdventure.getEndLevel();
+
+        //monsters = monsterRepository.findAllByOrderByName();
+        monsters = monsterRepository.getAllByLevelBetween(startLevel,endLevel);
     }
 
     public Monster getRandomMonster(){
-        if (monsters == null) {
-            getAllMonster();
-        }
-        currentMonster =  monsters.get(0);
+        Random random = new Random();
+        getAllMonsterByAdventure();
+        currentMonster =  monsters.get(random.nextInt(monsters.size()));
         return currentMonster;
     }
 

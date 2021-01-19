@@ -10,9 +10,10 @@ import java.util.Optional;
 
 public interface MonsterRepository extends JpaRepository<Monster, Long> {
 
-    Optional<Monster> getPlayerByName(String name);
+    Optional<Monster> getMonsterByName(String name);
 
     List<Monster> findAllByOrderByName();
 
+    List<Monster> getAllByLevelBetween(double startLevel, double endLevel);
 
 }

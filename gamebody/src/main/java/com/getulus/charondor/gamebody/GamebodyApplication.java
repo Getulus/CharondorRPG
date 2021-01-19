@@ -1,9 +1,14 @@
 package com.getulus.charondor.gamebody;
 
+import com.getulus.charondor.gamebody.model.Item;
 import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.advantures.Adventure;
+import com.getulus.charondor.gamebody.repository.AdventureRepository;
+import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.MonsterRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
+import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import com.getulus.charondor.gamebody.service.HTTPConnection;
 import com.getulus.charondor.gamebody.service.MonsterList;
 import com.getulus.charondor.gamebody.service.PlayerList;
@@ -25,7 +30,8 @@ public class GamebodyApplication {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GamebodyApplication.class);
 
-
+    @Autowired
+    AdventureRepository adventureRepository;
 
     @Autowired
     HTTPConnection httpConnection;
@@ -41,6 +47,12 @@ public class GamebodyApplication {
 
     @Autowired
     PlayerList playerList;
+
+    @Autowired
+    AdventureList adventureList;
+
+    @Autowired
+    ItemRepository itemRepository;
 
 
     public static void main(String[] args) {
@@ -103,6 +115,77 @@ public class GamebodyApplication {
 
             monsterRepository.saveAndFlush(werewolf);
             System.out.println(monsterList.toString());
+
+            Monster beastMan = Monster.builder()
+                    .agility(30)
+                    .armor(230)
+                    .attackValue(50)
+                    .criticalChance(24)
+                    .defenseValue(15)
+                    .maxHealth(250)
+                    .currentHealth(250)
+                    .level(2)
+                    .magicResistance(10)
+                    .stamina(30)
+                    .strength(41)
+                    .soulEnergy(80)
+                    .type("Warrior")
+                    .wisdom(6)
+                    .name("Beast Man")
+                    .lootedGold(40)
+                    .build();
+
+
+            monsterRepository.saveAndFlush(beastMan);
+
+            Adventure mistyForest = Adventure.builder()
+                    .name("Misty Forest")
+                    .startLevel(1)
+                    .endLevel(3)
+                    .build();
+
+            adventureList.setCurrentAdventure(mistyForest);
+            adventureRepository.saveAndFlush(mistyForest);
+            System.out.println(monsterList.toString());
+
+
+            Item woodenHammer = Item.builder()
+                    .agility(1)
+                    .armor(0)
+                    .attackValue(10)
+                    .criticalChance(0)
+                    .defenseValue(0)
+                    .dropChance(100)
+                    .level(1)
+                    .magicResistance(0)
+                    .name("Wooden Hammer")
+                    .rarity("Common")
+                    .slot("Hands")
+                    .stamina(0)
+                    .strength(1)
+                    .wisdom(0)
+                    .build();
+
+            itemRepository.saveAndFlush(woodenHammer);
+
+            Item ironSword = Item.builder()
+                    .agility(3)
+                    .armor(0)
+                    .attackValue(15)
+                    .criticalChance(0)
+                    .defenseValue(0)
+                    .dropChance(100)
+                    .level(2)
+                    .magicResistance(0)
+                    .name("Iron Sword")
+                    .rarity("Common")
+                    .slot("Hands")
+                    .stamina(0)
+                    .strength(2)
+                    .wisdom(0)
+                    .build();
+
+            itemRepository.saveAndFlush(ironSword);
 
         };
 
