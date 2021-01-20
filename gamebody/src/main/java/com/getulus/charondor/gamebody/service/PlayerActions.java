@@ -93,6 +93,8 @@ public class PlayerActions implements CharacterActions{
                     .stamina(currentItem.getStamina())
                     .strength(currentItem.getStrength())
                     .wisdom(currentItem.getWisdom())
+                    .image(currentItem.getImage())
+                    .equipped(false)
                     .build();
 
             itemRepository.save(lootedItem);

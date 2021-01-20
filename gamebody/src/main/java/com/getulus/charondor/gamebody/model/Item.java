@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Item {
 
     @Builder(toBuilder = true)
-    public Item(String name, String slot, double level, String rarity, double dropChance,
+    public Item(String name, String slot, double level, String rarity, double dropChance, String image, boolean equipped,
                 double stamina, double wisdom, double strength, double agility, double attackValue,
                 double defenseValue, double criticalChance, double armor, double magicResistance,
                 Player player) {
@@ -26,6 +26,8 @@ public class Item {
         this.level = level;
         this.rarity = rarity;
         this.dropChance = dropChance;
+        this.image = image;
+        this.equipped = equipped;
         this.stamina = stamina;
         this.wisdom = wisdom;
         this.strength = strength;
@@ -47,6 +49,9 @@ public class Item {
     private double level;
     private String rarity;
     private double dropChance;
+    private String image;
+
+    private boolean equipped;
 
 
     private double stamina;

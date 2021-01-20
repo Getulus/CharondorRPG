@@ -3,13 +3,12 @@ package com.getulus.charondor.gamebody.controller;
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
 import com.getulus.charondor.gamebody.model.Item;
 import com.getulus.charondor.gamebody.model.Monster;
+import com.getulus.charondor.gamebody.model.items.ItemCredentials;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.service.Items.ItemList;
 import com.getulus.charondor.gamebody.service.PlayerList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -30,11 +29,17 @@ public class ItemController {
     ItemList itemList;
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/items/player-items")
-    public List<Item> getPlayerItems(HttpServletResponse response){
+    @GetMapping("/items/inventory-items")
+    public List<Item> getInventoryItems(HttpServletResponse response){
         try {
             response.setStatus(200);
-            return itemRepository.getItemByPlayer_ID(playerList.getCurrentPlayer().getID());
+            List<Item> items = itemRepository.getItemByPlayer_IDAndEquipped(playerList.getCurrentPlayer().getID(), false);
+
+            while (items.size() != 25) {
+                items.add(Item.builder().name("empty slot").image("/images/inventory-slot.png").build());
+            }
+
+            return items;
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -52,6 +57,23 @@ public class ItemController {
         try {
             response.setStatus(200);
             return itemList.getAvailableItems();
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/items/equip")
+    public void equip(@RequestBody ItemCredentials itemCredentials, HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            itemList.equipItem(itemCredentials);
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

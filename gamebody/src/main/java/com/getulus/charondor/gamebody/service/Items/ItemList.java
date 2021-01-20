@@ -2,6 +2,7 @@ package com.getulus.charondor.gamebody.service.Items;
 
 
 import com.getulus.charondor.gamebody.model.Item;
+import com.getulus.charondor.gamebody.model.items.ItemCredentials;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.util.Util;
 import lombok.AllArgsConstructor;
@@ -55,5 +56,11 @@ public class ItemList {
 
     }
 
-
+    public void equipItem(ItemCredentials itemCredentials){
+        if (itemRepository.getItemBySlotAndEquipped(itemCredentials.getSlot(), true).isEmpty()) {
+            Item currentItem = itemRepository.getItemByItemID(itemCredentials.getID()).get();
+            currentItem.setEquipped(true);
+            itemRepository.save(currentItem);
+        }
+    }
 }

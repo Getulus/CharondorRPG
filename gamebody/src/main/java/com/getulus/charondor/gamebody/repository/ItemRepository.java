@@ -14,6 +14,10 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> getItemByLevelAndPlayer_IDIsNull(Double level);
 
-    List<Item> getItemByPlayer_ID(Long ID);
+    List<Item> getItemByPlayer_IDAndEquipped(Long ID, Boolean equipped);
+
+    Optional<Item> getItemByItemID(Long ID);
+
+    Optional<Item> getItemBySlotAndEquipped(String slot, Boolean equipped);
 
 }

@@ -164,6 +164,8 @@ public class GamebodyApplication {
                     .stamina(0)
                     .strength(1)
                     .wisdom(0)
+                    .equipped(false)
+                    .image("/images/wooden-hammer.png")
                     .build();
 
             itemRepository.saveAndFlush(woodenHammer);
@@ -183,6 +185,8 @@ public class GamebodyApplication {
                     .stamina(0)
                     .strength(2)
                     .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-sword.png")
                     .build();
 
             itemRepository.saveAndFlush(ironSword);
