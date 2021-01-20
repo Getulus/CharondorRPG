@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -57,10 +58,14 @@ public class ItemList {
     }
 
     public void equipItem(ItemCredentials itemCredentials){
-        if (itemRepository.getItemBySlotAndEquipped(itemCredentials.getSlot(), true).isEmpty()) {
-            Item currentItem = itemRepository.getItemByItemID(itemCredentials.getID()).get();
-            currentItem.setEquipped(true);
-            itemRepository.save(currentItem);
+        Optional<Item> optSlotItem = itemRepository.getItemBySlotAndEquipped(itemCredentials.getSlot(), true);
+        if (optSlotItem.isPresent()) {
+            Item slotItem = optSlotItem.get();
+            slotItem.setEquipped(false);
+            itemRepository.save(slotItem);
         }
+        Item currentItem = itemRepository.getItemByItemID(itemCredentials.getID()).get();
+        currentItem.setEquipped(true);
+        itemRepository.save(currentItem);
     }
 }

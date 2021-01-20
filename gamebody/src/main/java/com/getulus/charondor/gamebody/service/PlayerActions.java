@@ -46,7 +46,9 @@ public class PlayerActions implements CharacterActions{
     }
 
     public void regenerate() {
-        playerList.getCurrentPlayer().setCurrentHealth(playerList.getCurrentPlayer().getMaxHealth());
+        Player currentPlayer = playerList.getCurrentPlayer();
+        currentPlayer.setCurrentHealth(currentPlayer.getMaxHealth());
+        playerRepository.save(currentPlayer);
     }
 
 

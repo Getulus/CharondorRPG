@@ -155,7 +155,7 @@ public class GamebodyApplication {
                     .attackValue(10)
                     .criticalChance(0)
                     .defenseValue(0)
-                    .dropChance(100)
+                    .dropChance(20)
                     .level(1)
                     .magicResistance(0)
                     .name("Wooden Hammer")
@@ -170,13 +170,34 @@ public class GamebodyApplication {
 
             itemRepository.saveAndFlush(woodenHammer);
 
+            Item ironChestplate = Item.builder()
+                    .agility(0)
+                    .armor(50)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(5)
+                    .dropChance(30)
+                    .level(1)
+                    .magicResistance(10)
+                    .name("Iron Chestplate")
+                    .rarity("Common")
+                    .slot("chest")
+                    .stamina(4)
+                    .strength(1)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-chestplate.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironChestplate);
+
             Item ironSword = Item.builder()
                     .agility(3)
                     .armor(0)
                     .attackValue(15)
                     .criticalChance(0)
                     .defenseValue(0)
-                    .dropChance(100)
+                    .dropChance(25)
                     .level(2)
                     .magicResistance(0)
                     .name("Iron Sword")

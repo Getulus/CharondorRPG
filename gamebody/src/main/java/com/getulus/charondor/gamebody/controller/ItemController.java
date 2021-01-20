@@ -85,4 +85,28 @@ public class ItemController {
         }
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/items/equipped-items")
+    public List<Item> getEquippedItems(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            List<Item> items = itemRepository.getItemByPlayer_IDAndEquipped(playerList.getCurrentPlayer().getID(), true);
+            /*
+            while (items.size() != 7) {
+                items.add(Item.builder().name("empty slot").image("/images/inventory-slot.png").build());
+            }
+            */
+            return items;
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
+
 }
