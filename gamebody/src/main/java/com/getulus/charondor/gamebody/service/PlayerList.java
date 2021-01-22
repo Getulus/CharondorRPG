@@ -1,7 +1,9 @@
 package com.getulus.charondor.gamebody.service;
 
+import com.getulus.charondor.gamebody.model.Item;
 import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +21,9 @@ import java.util.List;
 public class PlayerList {
 
     @Autowired
+    ItemRepository itemRepository;
+
+    @Autowired
     PlayerRepository playerRepository;
 
 
@@ -27,8 +32,26 @@ public class PlayerList {
     private List<Player> players;
 
 
+
     public void addPlayer(Player player){
         players.add(player);
     }
 
+
+    public Player getCurrentPlayerWithEquipment() {
+        /*
+        List<Item> equipment = itemRepository.getItemByPlayer_IDAndEquipped(currentPlayer.getID(), true);
+        for (Item item : equipment) {
+            currentPlayer.setAgility(currentPlayer.getAgility() + item.getAgility());
+            currentPlayer.setStamina(currentPlayer.getStamina() + item.getStamina());
+            currentPlayer.setStrength(currentPlayer.getStrength() + item.getStrength());
+            currentPlayer.setArmor(currentPlayer.getArmor() + item.getArmor());
+            currentPlayer.setAttackValue(currentPlayer.getAttackValue() + item.getAttackValue());
+            currentPlayer.setCurrentHealth(currentPlayer.getCriticalChance() + item.getCriticalChance());
+            currentPlayer.setDefenseValue(currentPlayer.getDefenseValue() + item.getDefenseValue());
+            currentPlayer.setWisdom(currentPlayer.getWisdom() + item.getWisdom());
+        }
+        */
+        return currentPlayer;
+    }
 }

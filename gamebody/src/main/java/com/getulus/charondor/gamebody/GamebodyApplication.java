@@ -1,9 +1,14 @@
 package com.getulus.charondor.gamebody;
 
+import com.getulus.charondor.gamebody.model.Item;
 import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.advantures.Adventure;
+import com.getulus.charondor.gamebody.repository.AdventureRepository;
+import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.MonsterRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
+import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import com.getulus.charondor.gamebody.service.HTTPConnection;
 import com.getulus.charondor.gamebody.service.MonsterList;
 import com.getulus.charondor.gamebody.service.PlayerList;
@@ -25,7 +30,8 @@ public class GamebodyApplication {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GamebodyApplication.class);
 
-
+    @Autowired
+    AdventureRepository adventureRepository;
 
     @Autowired
     HTTPConnection httpConnection;
@@ -41,6 +47,12 @@ public class GamebodyApplication {
 
     @Autowired
     PlayerList playerList;
+
+    @Autowired
+    AdventureList adventureList;
+
+    @Autowired
+    ItemRepository itemRepository;
 
 
     public static void main(String[] args) {
@@ -73,6 +85,7 @@ public class GamebodyApplication {
                     .experienceNeededForNextLevel(80)
                     .gold(0)
                     .experiencePoints(0)
+                    .image("/images/warrior.png")
                     .build();
 
 
@@ -98,11 +111,156 @@ public class GamebodyApplication {
                     .wisdom(3)
                     .name("Werewolf")
                     .lootedGold(40)
+                    .image("/images/werewolf.jpeg")
+                    .experience(30)
                     .build();
 
 
             monsterRepository.saveAndFlush(werewolf);
             System.out.println(monsterList.toString());
+
+            Monster beastMan = Monster.builder()
+                    .agility(30)
+                    .armor(230)
+                    .attackValue(50)
+                    .criticalChance(24)
+                    .defenseValue(15)
+                    .maxHealth(250)
+                    .currentHealth(250)
+                    .level(2)
+                    .magicResistance(10)
+                    .stamina(30)
+                    .strength(41)
+                    .soulEnergy(80)
+                    .type("Warrior")
+                    .wisdom(6)
+                    .name("Beast Man")
+                    .lootedGold(40)
+                    .image("/images/beastman.jpeg")
+                    .experience(50)
+                    .build();
+
+
+            monsterRepository.saveAndFlush(beastMan);
+
+            Monster serpent = Monster.builder()
+                    .agility(60)
+                    .armor(100)
+                    .attackValue(60)
+                    .criticalChance(30)
+                    .defenseValue(15)
+                    .maxHealth(180)
+                    .currentHealth(180)
+                    .level(2)
+                    .magicResistance(40)
+                    .stamina(35)
+                    .strength(45)
+                    .soulEnergy(30)
+                    .type("Beast")
+                    .wisdom(2)
+                    .name("Serpent")
+                    .lootedGold(50)
+                    .image("/images/serpent.jpeg")
+                    .experience(60)
+                    .build();
+
+
+            monsterRepository.saveAndFlush(serpent);
+
+            Adventure mistyForest = Adventure.builder()
+                    .name("Misty Forest")
+                    .startLevel(1)
+                    .endLevel(3)
+                    .build();
+
+            adventureList.setCurrentAdventure(mistyForest);
+            adventureRepository.saveAndFlush(mistyForest);
+            System.out.println(monsterList.toString());
+
+
+            Item woodenHammer = Item.builder()
+                    .agility(1)
+                    .armor(0)
+                    .attackValue(10)
+                    .criticalChance(0)
+                    .defenseValue(0)
+                    .dropChance(20)
+                    .level(1)
+                    .magicResistance(0)
+                    .name("Wooden Hammer")
+                    .rarity("Common")
+                    .slot("Hands")
+                    .stamina(0)
+                    .strength(1)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/wooden-hammer.png")
+                    .build();
+
+            itemRepository.saveAndFlush(woodenHammer);
+
+            Item ironChestplate = Item.builder()
+                    .agility(0)
+                    .armor(50)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(5)
+                    .dropChance(30)
+                    .level(1)
+                    .magicResistance(10)
+                    .name("Iron Chestplate")
+                    .rarity("Common")
+                    .slot("chest")
+                    .stamina(4)
+                    .strength(1)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-chestplate.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironChestplate);
+
+            Item ironSword = Item.builder()
+                    .agility(3)
+                    .armor(0)
+                    .attackValue(15)
+                    .criticalChance(0)
+                    .defenseValue(0)
+                    .dropChance(25)
+                    .level(2)
+                    .magicResistance(0)
+                    .name("Iron Sword")
+                    .rarity("Common")
+                    .slot("Hands")
+                    .stamina(0)
+                    .strength(2)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-sword.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironSword);
+
+            Item ironBoots = Item.builder()
+                    .agility(0)
+                    .armor(20)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(2)
+                    .dropChance(25)
+                    .level(2)
+                    .magicResistance(15)
+                    .name("Iron Boots")
+                    .rarity("Common")
+                    .slot("foot")
+                    .stamina(6)
+                    .strength(2)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-boots.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironBoots);
 
         };
 

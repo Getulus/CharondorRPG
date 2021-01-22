@@ -1,7 +1,9 @@
 package com.getulus.charondor.gamebody.service;
 
+import com.getulus.charondor.gamebody.model.Item;
 import com.getulus.charondor.gamebody.model.Player;
 import com.getulus.charondor.gamebody.model.Skill;
+import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class PlayerActions implements CharacterActions{
     @Autowired
     MonsterList monsterList;
 
+    @Autowired
+    ItemRepository itemRepository;
+
 
     @Override
     public void useSkill(Skill skill) {
@@ -41,12 +46,14 @@ public class PlayerActions implements CharacterActions{
     }
 
     public void regenerate() {
-        playerList.getCurrentPlayer().setCurrentHealth(playerList.getCurrentPlayer().getMaxHealth());
+        Player currentPlayer = playerList.getCurrentPlayer();
+        currentPlayer.setCurrentHealth(currentPlayer.getMaxHealth());
+        playerRepository.save(currentPlayer);
     }
 
 
     public void earnExperience(){
-        double monsterExp = 50;
+        double monsterExp = monsterList.getCurrentMonster().getExperience();
         double playerExp = playerList.getCurrentPlayer().getExperiencePoints();
         double needForNexLevel = playerList.getCurrentPlayer().getExperienceNeededForNextLevel();
         double allExp = monsterExp + playerExp;
@@ -69,7 +76,32 @@ public class PlayerActions implements CharacterActions{
 
     }
 
-    public void loot(){
+    public void loot(List<Item> loot){
+        for (int i = 0; i < loot.size(); i++) {
+            Item currentItem = loot.get(i);
+            Item lootedItem = Item.builder()
+                    .agility(currentItem.getAgility())
+                    .armor(currentItem.getArmor())
+                    .attackValue(currentItem.getAttackValue())
+                    .criticalChance(currentItem.getCriticalChance())
+                    .defenseValue(currentItem.getDefenseValue())
+                    .dropChance(currentItem.getDropChance())
+                    .level(currentItem.getLevel())
+                    .magicResistance(currentItem.getMagicResistance())
+                    .name(currentItem.getName())
+                    .player(playerList.getCurrentPlayer())
+                    .rarity(currentItem.getRarity())
+                    .slot(currentItem.getSlot())
+                    .stamina(currentItem.getStamina())
+                    .strength(currentItem.getStrength())
+                    .wisdom(currentItem.getWisdom())
+                    .image(currentItem.getImage())
+                    .equipped(false)
+                    .build();
+
+            itemRepository.save(lootedItem);
+            playerList.getCurrentPlayer().addItemToInventory(lootedItem);
+        }
 
     }
 

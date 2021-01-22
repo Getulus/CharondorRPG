@@ -44,4 +44,22 @@ public class PlayerController {
     }
 
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/character/regenerate")
+    public void regenerate(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            playerActions.regenerate();
+
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
 }

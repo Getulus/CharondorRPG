@@ -1,6 +1,8 @@
 package com.getulus.charondor.gamebody.service;
 
+import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
+import com.getulus.charondor.gamebody.service.Items.ItemList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,16 +30,20 @@ public class CombatActions {
 
     RestTemplate restTemplate = new RestTemplate();
 
+    @Autowired
+    ItemList itemList;
+
 
     public void resolveCombat() {
         fight();
         if (playerActions.isDead()) {
             //If the player dead get nothing but health.
-            playerActions.regenerate();
+            //playerActions.regenerate();
         } else {
             playerActions.earnGold();
             playerActions.earnExperience();
-            playerActions.loot();
+            itemList.setLootedItems(monsterList.getCurrentMonster().getLevel());
+            playerActions.loot(itemList.getAvailableItems());
         }
 
         playerRepository.save(playerList.getCurrentPlayer());
@@ -56,7 +62,7 @@ public class CombatActions {
 
         while (monsterHealth > 0 && playerHealth > 0) {
             if (rounds % 2 == 0) {
-                double playerDamage = restTemplate.getForEntity("http://192.168.0.18:8762/action/fight/player-attack", double.class).getBody();
+                double playerDamage = restTemplate.getForEntity("http://192.168.0.18:8762/action/fight/player-attack", double.class).getBody();;
                 monsterHealth -= playerDamage;
                 combatLogList.getCombatLog().add(
                         new CombatLogTemplate(rounds,"Player", playerDamage, monsterHealth)

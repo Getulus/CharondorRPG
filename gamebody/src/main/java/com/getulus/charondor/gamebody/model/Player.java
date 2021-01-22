@@ -1,11 +1,15 @@
 package com.getulus.charondor.gamebody.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -20,19 +24,19 @@ public class Player extends Character {
     public Player(long ID, String type, double level, double currentHealth, double maxHealth, double soulEnergy,
                   double attackValue, double defenseValue, double criticalChance,
                   double armor, double magicResistance,
-                  double stamina, double wisdom, double strength, double agility, String name, double experiencePoints,
+                  double stamina, double wisdom, double strength, double agility, String image, String name, double experiencePoints,
                   double experienceNeededForNextLevel, double gold, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
     {
         super(
                 ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
-                criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility
+                criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility, image
         );
 
         this.name = name;
         this.experiencePoints = experiencePoints;
         this.experienceNeededForNextLevel = experienceNeededForNextLevel;
         this.gold = gold;
-        //this.items = items;
+        this.items = new ArrayList<Item>();
     }
 
 
@@ -41,6 +45,13 @@ public class Player extends Character {
     private double experiencePoints;
     private double experienceNeededForNextLevel;
     private double gold;
+
+    @Singular
+    @OneToMany(mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @LazyCollection(LazyCollectionOption.FALSE)
+    List<Item> items;
 
 
     public void increaseAttributesByLeveling() {
@@ -58,6 +69,14 @@ public class Player extends Character {
         this.soulEnergy += 20;
         this.maxHealth += 100;
 
+        this.experienceNeededForNextLevel *= 2;
+
+    }
+
+    public void addItemToInventory(Item item) {
+        if (item != null) {
+            items.add(item);
+        }
     }
 
 }

@@ -66,5 +66,7 @@ public abstract class Character {
     protected double strength;
     protected double agility;
 
+    protected String image;
+
 
 }
