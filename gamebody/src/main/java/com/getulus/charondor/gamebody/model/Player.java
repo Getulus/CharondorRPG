@@ -24,12 +24,12 @@ public class Player extends Character {
     public Player(long ID, String type, double level, double currentHealth, double maxHealth, double soulEnergy,
                   double attackValue, double defenseValue, double criticalChance,
                   double armor, double magicResistance,
-                  double stamina, double wisdom, double strength, double agility, String name, double experiencePoints,
+                  double stamina, double wisdom, double strength, double agility, String image, String name, double experiencePoints,
                   double experienceNeededForNextLevel, double gold, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
     {
         super(
                 ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
-                criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility
+                criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility, image
         );
 
         this.name = name;
@@ -68,6 +68,8 @@ public class Player extends Character {
 
         this.soulEnergy += 20;
         this.maxHealth += 100;
+
+        this.experienceNeededForNextLevel *= 2;
 
     }
 

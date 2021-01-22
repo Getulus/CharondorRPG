@@ -85,6 +85,7 @@ public class GamebodyApplication {
                     .experienceNeededForNextLevel(80)
                     .gold(0)
                     .experiencePoints(0)
+                    .image("/images/warrior.png")
                     .build();
 
 
@@ -110,6 +111,8 @@ public class GamebodyApplication {
                     .wisdom(3)
                     .name("Werewolf")
                     .lootedGold(40)
+                    .image("/images/werewolf.jpeg")
+                    .experience(30)
                     .build();
 
 
@@ -133,10 +136,36 @@ public class GamebodyApplication {
                     .wisdom(6)
                     .name("Beast Man")
                     .lootedGold(40)
+                    .image("/images/beastman.jpeg")
+                    .experience(50)
                     .build();
 
 
             monsterRepository.saveAndFlush(beastMan);
+
+            Monster serpent = Monster.builder()
+                    .agility(60)
+                    .armor(100)
+                    .attackValue(60)
+                    .criticalChance(30)
+                    .defenseValue(15)
+                    .maxHealth(180)
+                    .currentHealth(180)
+                    .level(2)
+                    .magicResistance(40)
+                    .stamina(35)
+                    .strength(45)
+                    .soulEnergy(30)
+                    .type("Beast")
+                    .wisdom(2)
+                    .name("Serpent")
+                    .lootedGold(50)
+                    .image("/images/serpent.jpeg")
+                    .experience(60)
+                    .build();
+
+
+            monsterRepository.saveAndFlush(serpent);
 
             Adventure mistyForest = Adventure.builder()
                     .name("Misty Forest")
@@ -211,6 +240,27 @@ public class GamebodyApplication {
                     .build();
 
             itemRepository.saveAndFlush(ironSword);
+
+            Item ironBoots = Item.builder()
+                    .agility(0)
+                    .armor(20)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(2)
+                    .dropChance(25)
+                    .level(2)
+                    .magicResistance(15)
+                    .name("Iron Boots")
+                    .rarity("Common")
+                    .slot("foot")
+                    .stamina(6)
+                    .strength(2)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-boots.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironBoots);
 
         };
 

@@ -53,7 +53,7 @@ public class PlayerActions implements CharacterActions{
 
 
     public void earnExperience(){
-        double monsterExp = 50;
+        double monsterExp = monsterList.getCurrentMonster().getExperience();
         double playerExp = playerList.getCurrentPlayer().getExperiencePoints();
         double needForNexLevel = playerList.getCurrentPlayer().getExperienceNeededForNextLevel();
         double allExp = monsterExp + playerExp;
