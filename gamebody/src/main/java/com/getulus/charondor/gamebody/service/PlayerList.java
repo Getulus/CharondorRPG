@@ -54,4 +54,10 @@ public class PlayerList {
         */
         return currentPlayer;
     }
+
+    public void savePlayer() {
+        playerRepository.save(currentPlayer);
+    }
+
+
 }

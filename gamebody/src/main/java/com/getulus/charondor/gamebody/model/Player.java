@@ -79,4 +79,26 @@ public class Player extends Character {
         }
     }
 
+    public void unEquipItem(Item item) {
+        agility -= item.getAgility();
+        stamina -= item.getStamina();
+        strength -= item.getStrength();
+        armor -= item.getArmor();
+        attackValue -= item.getAttackValue();
+        criticalChance -= item.getCriticalChance();
+        defenseValue -= item.getDefenseValue();
+        wisdom -= item.getWisdom();
+    }
+
+    public void equipItem(Item item) {
+        agility += item.getAgility();
+        stamina += item.getStamina();
+        strength += item.getStrength();
+        armor += item.getArmor();
+        attackValue += item.getAttackValue();
+        criticalChance += item.getCriticalChance();
+        defenseValue += item.getDefenseValue();
+        wisdom += item.getWisdom();
+    }
+
 }
