@@ -66,7 +66,7 @@ public class GamebodyApplication {
 
         return args -> {
 
-            Player getulus = Player.builder()
+            Player warrior = Player.builder()
                     .agility(10)
                     .armor(200)
                     .attackValue(50)
@@ -85,14 +85,138 @@ public class GamebodyApplication {
                     .experienceNeededForNextLevel(80)
                     .gold(0)
                     .experiencePoints(0)
-                    .image("/images/warrior.png")
+                    .image("/images/warrior.jpeg")
+                    .classSymbol("/images/warrioricon.jpg")
                     .build();
 
+            playerRepository.saveAndFlush(warrior);
 
-            playerRepository.saveAndFlush(getulus);
-            playerList.setCurrentPlayer(getulus);
-            //playerList.addPlayer(playerRepository.getPlayerByName("Getulus").get());
-            System.out.println(playerList.toString());
+            Player shadowStriker = Player.builder()
+                    .agility(20)
+                    .armor(150)
+                    .attackValue(60)
+                    .criticalChance(20)
+                    .defenseValue(15)
+                    .maxHealth(350)
+                    .currentHealth(350)
+                    .level(1)
+                    .magicResistance(10)
+                    .stamina(25)
+                    .strength(30)
+                    .soulEnergy(70)
+                    .type("Shadow Striker")
+                    .wisdom(5)
+                    .name("Lartimor")
+                    .experienceNeededForNextLevel(80)
+                    .gold(0)
+                    .experiencePoints(0)
+                    .image("/images/shadowstriker.jpeg")
+                    .classSymbol("/images/striker-sign.jpg")
+                    .build();
+
+            playerRepository.saveAndFlush(shadowStriker);
+
+            Player druid = Player.builder()
+                    .agility(12)
+                    .armor(180)
+                    .attackValue(40)
+                    .criticalChance(10)
+                    .defenseValue(30)
+                    .maxHealth(450)
+                    .currentHealth(450)
+                    .level(1)
+                    .magicResistance(30)
+                    .stamina(22)
+                    .strength(30)
+                    .soulEnergy(150)
+                    .type("Druid")
+                    .wisdom(20)
+                    .name("Liran")
+                    .experienceNeededForNextLevel(80)
+                    .gold(0)
+                    .experiencePoints(0)
+                    .image("/images/druid.png")
+                    .classSymbol("images/druid-sign.jpg")
+                    .build();
+
+            playerRepository.saveAndFlush(druid);
+
+
+            Player wizard = Player.builder()
+                    .agility(10)
+                    .armor(120)
+                    .attackValue(70)
+                    .criticalChance(17)
+                    .defenseValue(15)
+                    .maxHealth(320)
+                    .currentHealth(320)
+                    .level(1)
+                    .magicResistance(30)
+                    .stamina(20)
+                    .strength(25)
+                    .soulEnergy(180)
+                    .type("Wizard")
+                    .wisdom(30)
+                    .name("Markuth")
+                    .experienceNeededForNextLevel(80)
+                    .gold(0)
+                    .experiencePoints(0)
+                    .image("/images/wizard.png")
+                    .classSymbol("/images/wizard-sign.jpg")
+                    .build();
+
+            playerRepository.saveAndFlush(wizard);
+
+            Player trapMaster = Player.builder()
+                    .agility(30)
+                    .armor(200)
+                    .attackValue(40)
+                    .criticalChance(17)
+                    .defenseValue(25)
+                    .maxHealth(400)
+                    .currentHealth(400)
+                    .level(1)
+                    .magicResistance(12)
+                    .stamina(20)
+                    .strength(26)
+                    .soulEnergy(80)
+                    .type("Trap Master")
+                    .wisdom(7)
+                    .name("Septar")
+                    .experienceNeededForNextLevel(80)
+                    .gold(0)
+                    .experiencePoints(0)
+                    .image("/images/trap-master.jpeg")
+                    .classSymbol("/images/trap-sign.jpg")
+                    .build();
+
+            playerRepository.saveAndFlush(trapMaster);
+
+
+            Player necromancer = Player.builder()
+                    .agility(10)
+                    .armor(200)
+                    .attackValue(50)
+                    .criticalChance(12)
+                    .defenseValue(25)
+                    .maxHealth(300)
+                    .currentHealth(300)
+                    .level(1)
+                    .magicResistance(40)
+                    .stamina(20)
+                    .strength(45)
+                    .soulEnergy(100)
+                    .type("Necromancer")
+                    .wisdom(20)
+                    .name("Berlevac")
+                    .experienceNeededForNextLevel(80)
+                    .gold(0)
+                    .experiencePoints(0)
+                    .image("/images/necromancer.jpeg")
+                    .classSymbol("/images/necromancer-sign.jpg")
+                    .build();
+
+            playerRepository.saveAndFlush(necromancer);
 
             Monster werewolf = Monster.builder()
                     .agility(8)
@@ -117,7 +241,6 @@ public class GamebodyApplication {
 
 
             monsterRepository.saveAndFlush(werewolf);
-            System.out.println(monsterList.toString());
 
             Monster beastMan = Monster.builder()
                     .agility(30)
@@ -173,9 +296,7 @@ public class GamebodyApplication {
                     .endLevel(3)
                     .build();
 
-            adventureList.setCurrentAdventure(mistyForest);
             adventureRepository.saveAndFlush(mistyForest);
-            System.out.println(monsterList.toString());
 
 
             Item woodenHammer = Item.builder()

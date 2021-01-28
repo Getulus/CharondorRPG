@@ -4,6 +4,7 @@ package com.getulus.charondor.gamebody.controller;
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
 import com.getulus.charondor.gamebody.model.Monster;
 import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import com.getulus.charondor.gamebody.service.MonsterList;
 import com.getulus.charondor.gamebody.service.PlayerList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,20 @@ public class MonsterController {
     @Autowired
     ExceptionLog exceptionLog;
 
+    @Autowired
+    AdventureList adventureList;
+
 
     @CrossOrigin(origins = "*")
     @GetMapping("/character/monster")
     public Monster getCurrentMonster(HttpServletResponse response){
         try {
             response.setStatus(200);
-            return monsterList.getRandomMonster();
+            if (adventureList.getCurrentAdventure() == null) {
+                return Monster.builder().image("/images/blankmonster.png").name("Monster").build();
+            }
+
+            return monsterList.getCurrentMonster();
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

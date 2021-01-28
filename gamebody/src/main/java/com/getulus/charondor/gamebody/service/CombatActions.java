@@ -52,8 +52,10 @@ public class CombatActions {
 
 
     public void fight() {
+        Monster currentMonster = monsterList.getRandomMonster();
+        monsterList.setCurrentMonster(currentMonster);
 
-        double monsterHealth = monsterList.getRandomMonster().getMaxHealth();
+        double monsterHealth = currentMonster.getMaxHealth();
         double playerHealth = playerList.getCurrentPlayer().getCurrentHealth();
 
         double rounds = 0;
@@ -62,7 +64,7 @@ public class CombatActions {
 
         while (monsterHealth > 0 && playerHealth > 0) {
             if (rounds % 2 == 0) {
-                double playerDamage = restTemplate.getForEntity("http://192.168.0.18:8762/action/fight/player-attack", double.class).getBody();;
+                double playerDamage = restTemplate.getForEntity("http://192.168.0.18:8762/action/fight/player-attack", double.class).getBody();
                 monsterHealth -= playerDamage;
                 combatLogList.getCombatLog().add(
                         new CombatLogTemplate(rounds,"Player", playerDamage, monsterHealth)

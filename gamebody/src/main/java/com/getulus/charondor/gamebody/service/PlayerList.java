@@ -34,9 +34,16 @@ public class PlayerList {
 
 
     public void addPlayer(Player player){
-        players.add(player);
+        playerRepository.save(player);
     }
 
+    public void choosePlayer(Player player){
+        Player newPLayer = playerRepository.getPlayerByType(player.getType()).get();
+
+        //newPLayer.setName(player.getName());
+        currentPlayer = newPLayer;
+        playerRepository.save(newPLayer);
+    }
 
     public Player getCurrentPlayerWithEquipment() {
         /*

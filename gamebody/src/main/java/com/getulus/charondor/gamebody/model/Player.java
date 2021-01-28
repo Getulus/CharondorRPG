@@ -25,7 +25,7 @@ public class Player extends Character {
                   double attackValue, double defenseValue, double criticalChance,
                   double armor, double magicResistance,
                   double stamina, double wisdom, double strength, double agility, String image, String name, double experiencePoints,
-                  double experienceNeededForNextLevel, double gold, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
+                  double experienceNeededForNextLevel, double gold, String classSymbol, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
     {
         super(
                 ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
@@ -37,6 +37,7 @@ public class Player extends Character {
         this.experienceNeededForNextLevel = experienceNeededForNextLevel;
         this.gold = gold;
         this.items = new ArrayList<Item>();
+        this.classSymbol = classSymbol;
     }
 
 
@@ -45,6 +46,7 @@ public class Player extends Character {
     private double experiencePoints;
     private double experienceNeededForNextLevel;
     private double gold;
+    private String classSymbol;
 
     @Singular
     @OneToMany(mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
