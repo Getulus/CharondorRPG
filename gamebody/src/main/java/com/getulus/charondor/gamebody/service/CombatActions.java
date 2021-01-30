@@ -64,14 +64,14 @@ public class CombatActions {
 
         while (monsterHealth > 0 && playerHealth > 0) {
             if (rounds % 2 == 0) {
-                double playerDamage = restTemplate.getForEntity("http://192.168.0.18:8762/action/fight/player-attack", double.class).getBody();
+                double playerDamage = restTemplate.getForEntity("http://192.168.0.21:8762/action/fight/player-attack", double.class).getBody();
                 monsterHealth -= playerDamage;
                 combatLogList.getCombatLog().add(
                         new CombatLogTemplate(rounds,"Player", playerDamage, monsterHealth)
                 );
                 rounds++;
             } else {
-                double monsterDamage = restTemplate.getForEntity("http://192.168.0.18:8762/action/fight/monster-attack", double.class).getBody();
+                double monsterDamage = restTemplate.getForEntity("http://192.168.0.21:8762/action/fight/monster-attack", double.class).getBody();
                 playerHealth -= monsterDamage;
 
                 playerList.getCurrentPlayer().setCurrentHealth(playerHealth);
