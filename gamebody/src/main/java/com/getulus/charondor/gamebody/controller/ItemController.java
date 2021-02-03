@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -56,7 +57,12 @@ public class ItemController {
     public List<Item> getLoot(HttpServletResponse response){
         try {
             response.setStatus(200);
-            return itemList.getAvailableItems();
+            List<Item> items = itemList.getAvailableItems();
+
+            if (items == null) {
+                return new ArrayList<>();
+            }
+            return items;
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -97,6 +103,23 @@ public class ItemController {
             }
             */
             return items;
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/items/clear-loot")
+    public void clearLoot(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            itemList.setAvailableItems(null);
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

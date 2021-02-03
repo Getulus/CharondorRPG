@@ -413,7 +413,7 @@ public class GamebodyApplication {
                     .soulEnergy(100)
                     .type("Ogre")
                     .wisdom(15)
-                    .name("Alha Ogre")
+                    .name("Alpha Ogre")
                     .lootedGold(200)
                     .image("/images/alphaOgre.jpeg")
                     .experience(400)
@@ -421,6 +421,30 @@ public class GamebodyApplication {
 
 
             monsterRepository.saveAndFlush(alphaOgre);
+
+            Monster magmaLord = Monster.builder()
+                    .agility(150)
+                    .armor(1000)
+                    .attackValue(300)
+                    .criticalChance(20)
+                    .defenseValue(200)
+                    .maxHealth(1500)
+                    .currentHealth(1500)
+                    .level(10)
+                    .magicResistance(300)
+                    .stamina(100)
+                    .strength(130)
+                    .soulEnergy(300)
+                    .type("Ogre")
+                    .wisdom(50)
+                    .name("Magma Lord")
+                    .lootedGold(2000)
+                    .image("/images/magmaLord.jpeg")
+                    .experience(3000)
+                    .build();
+
+
+            monsterRepository.saveAndFlush(magmaLord);
 
 
             //********************
@@ -430,7 +454,7 @@ public class GamebodyApplication {
             Adventure mistyForest = Adventure.builder()
                     .name("Misty Forest")
                     .startLevel(1)
-                    .endLevel(3)
+                    .endLevel(2)
                     .build();
 
             adventureRepository.saveAndFlush(mistyForest);
@@ -438,7 +462,7 @@ public class GamebodyApplication {
 
             Adventure spiderCave = Adventure.builder()
                     .name("Spider Cave")
-                    .startLevel(2)
+                    .startLevel(3)
                     .endLevel(4)
                     .build();
 
@@ -446,7 +470,7 @@ public class GamebodyApplication {
 
             Adventure landOfOgres = Adventure.builder()
                     .name("Land of Ogres")
-                    .startLevel(3)
+                    .startLevel(4)
                     .endLevel(6)
                     .build();
 
@@ -488,12 +512,12 @@ public class GamebodyApplication {
                     .attackValue(10)
                     .criticalChance(0)
                     .defenseValue(0)
-                    .dropChance(20)
+                    .dropChance(25)
                     .level(1)
                     .magicResistance(0)
                     .name("Wooden Hammer")
                     .rarity("Common")
-                    .slot("Hands")
+                    .slot("leftHand")
                     .stamina(0)
                     .strength(1)
                     .wisdom(0)
@@ -503,13 +527,99 @@ public class GamebodyApplication {
 
             itemRepository.saveAndFlush(woodenHammer);
 
+
+            Item necklaceOfStrength = Item.builder()
+                    .agility(0)
+                    .armor(0)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(0)
+                    .dropChance(25)
+                    .level(1)
+                    .magicResistance(0)
+                    .name("Necklace of Strength")
+                    .rarity("Common")
+                    .slot("neck")
+                    .stamina(0)
+                    .strength(5)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/necklaceOfStrength.png")
+                    .build();
+
+            itemRepository.saveAndFlush(necklaceOfStrength);
+
+            Item ironShield = Item.builder()
+                    .agility(0)
+                    .armor(50)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(15)
+                    .dropChance(25)
+                    .level(1)
+                    .magicResistance(0)
+                    .name("Iron Shield")
+                    .rarity("Common")
+                    .slot("rightHand")
+                    .stamina(3)
+                    .strength(0)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-shield.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironShield);
+
+            Item lightHelmet = Item.builder()
+                    .agility(0)
+                    .armor(20)
+                    .attackValue(0)
+                    .criticalChance(0)
+                    .defenseValue(5)
+                    .dropChance(25)
+                    .level(1)
+                    .magicResistance(0)
+                    .name("Light Helmet")
+                    .rarity("Common")
+                    .slot("head")
+                    .stamina(0)
+                    .strength(5)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-helm.png")
+                    .build();
+
+            itemRepository.saveAndFlush(lightHelmet);
+
+
+            Item ironGloves = Item.builder()
+                    .agility(5)
+                    .armor(10)
+                    .attackValue(5)
+                    .criticalChance(0)
+                    .defenseValue(5)
+                    .dropChance(25)
+                    .level(1)
+                    .magicResistance(0)
+                    .name("Leather Gloves")
+                    .rarity("Common")
+                    .slot("gloves")
+                    .stamina(0)
+                    .strength(0)
+                    .wisdom(0)
+                    .equipped(false)
+                    .image("/images/iron-gloves.png")
+                    .build();
+
+            itemRepository.saveAndFlush(ironGloves);
+
             Item ironChestplate = Item.builder()
                     .agility(0)
                     .armor(50)
                     .attackValue(0)
                     .criticalChance(0)
                     .defenseValue(5)
-                    .dropChance(30)
+                    .dropChance(25)
                     .level(1)
                     .magicResistance(10)
                     .name("Iron Chestplate")
@@ -535,7 +645,7 @@ public class GamebodyApplication {
                     .magicResistance(0)
                     .name("Iron Sword")
                     .rarity("Common")
-                    .slot("Hands")
+                    .slot("leftHand")
                     .stamina(0)
                     .strength(2)
                     .wisdom(0)

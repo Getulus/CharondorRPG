@@ -40,6 +40,7 @@ public class PlayerList {
     public void choosePlayer(Player player){
         Player newPLayer = playerRepository.getPlayerByType(player.getType()).get();
 
+
         //newPLayer.setName(player.getName());
         currentPlayer = newPLayer;
         playerRepository.save(newPLayer);

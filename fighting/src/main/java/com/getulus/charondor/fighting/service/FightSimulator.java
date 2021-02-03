@@ -28,8 +28,10 @@ public class FightSimulator {
 
 
     private void setRoles(String role) {
-        CharacterTemplate player = restTemplate.getForEntity("http://192.168.0.21:8762/charondor/character/player", CharacterTemplate.class).getBody();
-        CharacterTemplate monster = restTemplate.getForEntity("http://192.168.0.21:8762/charondor/character/monster", CharacterTemplate.class).getBody();
+        CharacterTemplate player = restTemplate.getForEntity("http://192.168.0.18:8762/charondor/character/player", CharacterTemplate.class).getBody();
+        CharacterTemplate monster = restTemplate.getForEntity("http://192.168.0.18:8762/charondor/character/monster", CharacterTemplate.class).getBody();
+
+
 
         if (role.equals("player")) {
             attacker = player;
@@ -38,6 +40,8 @@ public class FightSimulator {
             attacker = monster;
             defender = player;
         }
+
+
     }
 
     private double calculateDefenseValue() {
