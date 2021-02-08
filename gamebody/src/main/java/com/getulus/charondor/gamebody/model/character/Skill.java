@@ -1,4 +1,6 @@
-package com.getulus.charondor.gamebody.model;
+package com.getulus.charondor.gamebody.model.character;
+
+import com.getulus.charondor.gamebody.model.character.Character;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

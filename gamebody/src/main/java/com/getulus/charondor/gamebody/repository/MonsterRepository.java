@@ -1,8 +1,6 @@
 package com.getulus.charondor.gamebody.repository;
 
-import com.getulus.charondor.gamebody.model.Monster;
-import com.getulus.charondor.gamebody.model.Player;
-import org.springframework.data.jpa.repository.EntityGraph;
+import com.getulus.charondor.gamebody.model.character.Monster;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

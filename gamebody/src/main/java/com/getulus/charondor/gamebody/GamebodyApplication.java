@@ -1,8 +1,8 @@
 package com.getulus.charondor.gamebody;
 
-import com.getulus.charondor.gamebody.model.Item;
-import com.getulus.charondor.gamebody.model.Monster;
-import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.items.Item;
+import com.getulus.charondor.gamebody.model.character.Monster;
+import com.getulus.charondor.gamebody.model.character.Player;
 import com.getulus.charondor.gamebody.model.advantures.Adventure;
 import com.getulus.charondor.gamebody.repository.AdventureRepository;
 import com.getulus.charondor.gamebody.repository.ItemRepository;

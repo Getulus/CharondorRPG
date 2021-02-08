@@ -1,17 +1,13 @@
 package com.getulus.charondor.gamebody.service;
 
-import com.getulus.charondor.gamebody.model.Monster;
-import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.model.advantures.Adventure;
-import com.getulus.charondor.gamebody.repository.AdventureRepository;
 import com.getulus.charondor.gamebody.repository.MonsterRepository;
 import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 

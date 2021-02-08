@@ -1,11 +1,10 @@
-package com.getulus.charondor.gamebody.model;
+package com.getulus.charondor.gamebody.model.character;
 
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 
@@ -44,20 +43,10 @@ public abstract class Character {
     protected double armor;
     protected double magicResistance;
 
-    @Singular
-    @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @LazyCollection(LazyCollectionOption.FALSE)
-    protected List<Buff> buffs;
 
 
-    @Singular
-    @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @LazyCollection(LazyCollectionOption.FALSE)
-    protected List<DeBuff> deBuffs;
+
+
 
 
     //attributes

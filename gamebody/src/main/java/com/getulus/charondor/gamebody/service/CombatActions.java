@@ -1,6 +1,6 @@
 package com.getulus.charondor.gamebody.service;
 
-import com.getulus.charondor.gamebody.model.Monster;
+import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import com.getulus.charondor.gamebody.service.Items.ItemList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;

@@ -1,11 +1,8 @@
 package com.getulus.charondor.gamebody.controller;
 
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
-import com.getulus.charondor.gamebody.model.Player;
 import com.getulus.charondor.gamebody.service.CombatActions;
 import com.getulus.charondor.gamebody.service.CombatLogList;
-import com.getulus.charondor.gamebody.service.PlayerActions;
-import com.getulus.charondor.gamebody.service.PlayerList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

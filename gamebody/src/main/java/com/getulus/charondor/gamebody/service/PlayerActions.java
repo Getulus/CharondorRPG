@@ -1,16 +1,13 @@
 package com.getulus.charondor.gamebody.service;
 
-import com.getulus.charondor.gamebody.model.Item;
-import com.getulus.charondor.gamebody.model.Player;
-import com.getulus.charondor.gamebody.model.Skill;
+import com.getulus.charondor.gamebody.model.items.Item;
+import com.getulus.charondor.gamebody.model.character.Player;
+import com.getulus.charondor.gamebody.model.character.Skill;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
-import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

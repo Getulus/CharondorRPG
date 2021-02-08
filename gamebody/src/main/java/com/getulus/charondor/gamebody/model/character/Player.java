@@ -1,6 +1,7 @@
-package com.getulus.charondor.gamebody.model;
+package com.getulus.charondor.gamebody.model.character;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.getulus.charondor.gamebody.model.items.Item;
+import com.getulus.charondor.gamebody.model.tavern.Quest;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.LazyCollection;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -25,19 +27,22 @@ public class Player extends Character {
                   double attackValue, double defenseValue, double criticalChance,
                   double armor, double magicResistance,
                   double stamina, double wisdom, double strength, double agility, String image, String name, double experiencePoints,
-                  double experienceNeededForNextLevel, double gold, String classSymbol, Set<Skill> skills, List<Buff> buffs, List<DeBuff> deBuffs)
+                  double experienceNeededForNextLevel, double gold, String classSymbol, Set<Skill> skills)
     {
         super(
                 ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
-                criticalChance, armor, magicResistance, buffs, deBuffs, stamina, wisdom, strength, agility, image
+                criticalChance, armor, magicResistance, stamina, wisdom, strength, agility, image
         );
 
+        this.attributePoints = AttributePoint.builder().player(this).staminaPointPrice(20).agilityPointPrice(20).strengthPointPrice(20).wisdomPointPrice(20).build();
         this.name = name;
         this.experiencePoints = experiencePoints;
         this.experienceNeededForNextLevel = experienceNeededForNextLevel;
         this.gold = gold;
         this.items = new ArrayList<Item>();
         this.classSymbol = classSymbol;
+        this.quests = new ArrayList<>();
+
     }
 
 
@@ -54,6 +59,21 @@ public class Player extends Character {
     @ToString.Exclude
     @LazyCollection(LazyCollectionOption.FALSE)
     List<Item> items;
+
+    @Singular
+    @OneToOne(mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    //@LazyCollection(LazyCollectionOption.FALSE)
+    protected AttributePoint attributePoints;
+
+
+    @Singular
+    @OneToMany(mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected List<Quest> quests;
 
 
     public void increaseAttributesByLeveling() {

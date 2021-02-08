@@ -1,8 +1,8 @@
 package com.getulus.charondor.gamebody.service;
 
 
-import com.getulus.charondor.gamebody.model.Item;
-import com.getulus.charondor.gamebody.model.Skill;
+import com.getulus.charondor.gamebody.model.items.Item;
+import com.getulus.charondor.gamebody.model.character.Skill;
 import org.springframework.stereotype.Service;
 
 

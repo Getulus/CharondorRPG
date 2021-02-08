@@ -2,11 +2,9 @@ package com.getulus.charondor.gamebody.controller;
 
 
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
-import com.getulus.charondor.gamebody.model.Monster;
-import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import com.getulus.charondor.gamebody.service.MonsterList;
-import com.getulus.charondor.gamebody.service.PlayerList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

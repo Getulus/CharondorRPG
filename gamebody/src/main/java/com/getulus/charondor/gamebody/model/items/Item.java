@@ -1,7 +1,8 @@
-package com.getulus.charondor.gamebody.model;
+package com.getulus.charondor.gamebody.model.items;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.getulus.charondor.gamebody.model.character.Player;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,8 +1,7 @@
 package com.getulus.charondor.gamebody.service;
 
-import com.getulus.charondor.gamebody.model.Item;
-import com.getulus.charondor.gamebody.model.Monster;
-import com.getulus.charondor.gamebody.model.Player;
+import com.getulus.charondor.gamebody.model.character.Monster;
+import com.getulus.charondor.gamebody.model.character.Player;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import lombok.AllArgsConstructor;
