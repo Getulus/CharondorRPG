@@ -5,7 +5,7 @@ import com.getulus.charondor.gamebody.model.items.Item;
 import com.getulus.charondor.gamebody.model.items.ItemCredentials;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.service.Items.ItemList;
-import com.getulus.charondor.gamebody.service.PlayerList;
+import com.getulus.charondor.gamebody.service.character.PlayerList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

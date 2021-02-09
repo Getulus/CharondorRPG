@@ -1,38 +1,54 @@
 package com.getulus.charondor.gamebody.controller;
 
+
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
-import com.getulus.charondor.gamebody.service.combat.CombatActions;
-import com.getulus.charondor.gamebody.service.combat.CombatLogList;
-import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
+import com.getulus.charondor.gamebody.model.tavern.Quest;
+import com.getulus.charondor.gamebody.service.character.PlayerList;
+import com.getulus.charondor.gamebody.service.tavern.QuestList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class CombatController {
+public class QuestController {
+
+    @Autowired
+    PlayerList playerList;
+
+    @Autowired
+    QuestList questList;
 
     @Autowired
     ExceptionLog exceptionLog;
 
-    @Autowired
-    CombatActions combatActions;
-
-    @Autowired
-    CombatLogList combatLogList;
-
-
     @CrossOrigin(origins = "*")
-    @GetMapping("/action/combat")
-    public void combat(HttpServletResponse response){
+    @PostMapping("/quest/accept")
+    public void acceptQuest(@RequestBody Quest quest, HttpServletResponse response){
         try {
             response.setStatus(200);
-            combatActions.resolveCombat();
+            questList.acceptQuest(quest.getQuestName());
+
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/quest/tavern-quests")
+    public List<Quest> getTavernQuests(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            questList.sortQuests();
+            return questList.getAvailableQuests();
+
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -45,34 +61,17 @@ public class CombatController {
     }
 
 
+
     @CrossOrigin(origins = "*")
-    @GetMapping("/action/combat-log")
-    public List<CombatLogTemplate> getCombatLog(HttpServletResponse response){
+    @GetMapping("/quest/test")
+    public void testQuest(HttpServletResponse response){
         try {
             response.setStatus(200);
 
-            if (combatLogList.getCombatLog() == null) {
-                return new ArrayList<>();
-                }
-            return combatLogList.getCombatLog();
-        } catch (IllegalArgumentException e) {
-            response.setStatus(400);
-            exceptionLog.log(e);
-            throw new IllegalArgumentException("Illegal arguments in players list");
-        } catch (IndexOutOfBoundsException e) {
-            response.setStatus(400);
-            exceptionLog.log(e);
-            throw new IndexOutOfBoundsException("Index out of bounds");
-        }
-    }
+            questList.acceptQuest("Kill Some Wolfs");
 
 
-    @CrossOrigin(origins = "*")
-    @PostMapping("/action/clear-combat-log")
-    public void clearCombatLog(HttpServletResponse response){
-        try {
-            response.setStatus(200);
-            combatLogList.setCombatLog(null);
+
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

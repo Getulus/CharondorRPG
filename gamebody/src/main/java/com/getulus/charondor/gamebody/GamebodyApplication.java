@@ -4,14 +4,12 @@ import com.getulus.charondor.gamebody.model.items.Item;
 import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.model.character.Player;
 import com.getulus.charondor.gamebody.model.advantures.Adventure;
-import com.getulus.charondor.gamebody.repository.AdventureRepository;
-import com.getulus.charondor.gamebody.repository.ItemRepository;
-import com.getulus.charondor.gamebody.repository.MonsterRepository;
-import com.getulus.charondor.gamebody.repository.PlayerRepository;
+import com.getulus.charondor.gamebody.model.tavern.Quest;
+import com.getulus.charondor.gamebody.repository.*;
 import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import com.getulus.charondor.gamebody.service.HTTPConnection;
-import com.getulus.charondor.gamebody.service.MonsterList;
-import com.getulus.charondor.gamebody.service.PlayerList;
+import com.getulus.charondor.gamebody.service.character.MonsterList;
+import com.getulus.charondor.gamebody.service.character.PlayerList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +52,9 @@ public class GamebodyApplication {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    QuestRepository questRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(GamebodyApplication.class, args);
@@ -87,13 +88,14 @@ public class GamebodyApplication {
                     .wisdom(5)
                     .name("Getulus")
                     .experienceNeededForNextLevel(80)
-                    .gold(0)
+                    .gold(200)
                     .experiencePoints(0)
                     .image("/images/warrior.jpeg")
                     .classSymbol("/images/warrioricon.jpg")
                     .build();
 
             playerRepository.saveAndFlush(warrior);
+            playerList.setCurrentPlayer(warrior);
 
             Player shadowStriker = Player.builder()
                     .agility(20)
@@ -675,6 +677,26 @@ public class GamebodyApplication {
                     .build();
 
             itemRepository.saveAndFlush(ironBoots);
+
+
+
+            //********************
+            //QUESTS
+            //********************
+
+
+            Quest killSomeWolfs = Quest.builder()
+                    .progress(0)
+                    .completed(false)
+                    .experience(400)
+                    .gold(340)
+                    .monsterName("Werewolf")
+                    .itemName("")
+                    .questName("Kill Some Wolfs")
+                    .task(3)
+                    .build();
+
+            questRepository.saveAndFlush(killSomeWolfs);
 
         };
 

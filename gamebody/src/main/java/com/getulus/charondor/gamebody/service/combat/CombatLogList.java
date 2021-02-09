@@ -1,4 +1,4 @@
-package com.getulus.charondor.gamebody.service;
+package com.getulus.charondor.gamebody.service.combat;
 
 
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;

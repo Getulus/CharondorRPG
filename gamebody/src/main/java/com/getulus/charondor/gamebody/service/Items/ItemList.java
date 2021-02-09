@@ -4,7 +4,7 @@ package com.getulus.charondor.gamebody.service.Items;
 import com.getulus.charondor.gamebody.model.items.Item;
 import com.getulus.charondor.gamebody.model.items.ItemCredentials;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
-import com.getulus.charondor.gamebody.service.PlayerList;
+import com.getulus.charondor.gamebody.service.character.PlayerList;
 import com.getulus.charondor.gamebody.util.Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;

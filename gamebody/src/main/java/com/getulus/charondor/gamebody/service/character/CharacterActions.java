@@ -1,4 +1,4 @@
-package com.getulus.charondor.gamebody.service;
+package com.getulus.charondor.gamebody.service.character;
 
 
 import com.getulus.charondor.gamebody.model.character.Skill;

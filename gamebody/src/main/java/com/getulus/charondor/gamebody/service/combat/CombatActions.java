@@ -1,8 +1,11 @@
-package com.getulus.charondor.gamebody.service;
+package com.getulus.charondor.gamebody.service.combat;
 
 import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import com.getulus.charondor.gamebody.service.Items.ItemList;
+import com.getulus.charondor.gamebody.service.character.MonsterList;
+import com.getulus.charondor.gamebody.service.character.PlayerActions;
+import com.getulus.charondor.gamebody.service.character.PlayerList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

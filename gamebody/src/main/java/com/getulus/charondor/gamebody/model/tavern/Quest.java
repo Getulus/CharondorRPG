@@ -16,11 +16,12 @@ import javax.persistence.*;
 public class Quest {
 
     @Builder(toBuilder = true)
-    public Quest(long questId, Player player, double experience, double gold, double progress, boolean completed, String monsterName, String itemName) {
-        this.questId = questId;
+    public Quest(Player player, String questName, double experience, double gold, double task, double progress, boolean completed, String monsterName, String itemName) {
         this.player = player;
+        this.questName = questName;
         this.experience = experience;
         this.gold = gold;
+        this.task = task;
         this.progress = progress;
         this.completed = completed;
         this.monsterName = monsterName;
@@ -35,10 +36,20 @@ public class Quest {
     @JsonIgnore
     private Player player;
 
+    private String questName;
     private double experience;
     private double gold;
+    private double task;
     private double progress;
     private boolean completed;
     private String monsterName;
     private String itemName;
+
+
+    public boolean isCompleted() {
+        if (task == progress) {
+            completed = true;
+        }
+        return completed;
+    }
 }

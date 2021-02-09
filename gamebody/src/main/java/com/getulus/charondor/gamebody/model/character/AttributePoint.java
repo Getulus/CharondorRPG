@@ -1,5 +1,6 @@
 package com.getulus.charondor.gamebody.model.character;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.getulus.charondor.gamebody.model.character.Player;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class AttributePoint {
     private long attributeID;
 
     @OneToOne
+    @JsonIgnore
     private Player player;
 
     private double strengthPointPrice;
@@ -28,7 +30,7 @@ public class AttributePoint {
     private double staminaPointPrice;
     private double wisdomPointPrice;
 
-    public void addStrengthPoint() {
+    public void addStrengthPointPrice() {
         strengthPointPrice = Math.round(strengthPointPrice * 1.2);
     }
 
