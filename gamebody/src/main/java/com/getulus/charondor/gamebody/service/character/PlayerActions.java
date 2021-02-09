@@ -3,6 +3,7 @@ package com.getulus.charondor.gamebody.service.character;
 import com.getulus.charondor.gamebody.model.items.Item;
 import com.getulus.charondor.gamebody.model.character.Player;
 import com.getulus.charondor.gamebody.model.character.Skill;
+import com.getulus.charondor.gamebody.model.tavern.Quest;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,10 @@ public class PlayerActions implements CharacterActions{
 
     private void leveling() {
         playerList.getCurrentPlayer().increaseAttributesByLeveling();
+    }
+
+    public void completeQuest(Quest completedQuest){
+
     }
 
 

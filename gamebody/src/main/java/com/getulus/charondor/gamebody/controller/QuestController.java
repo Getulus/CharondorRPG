@@ -61,6 +61,25 @@ public class QuestController {
     }
 
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/quest/progress")
+    public void progressQuest(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+
+
+
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
 
     @CrossOrigin(origins = "*")
     @GetMapping("/quest/test")
