@@ -6,6 +6,7 @@ import com.getulus.charondor.gamebody.service.Items.ItemList;
 import com.getulus.charondor.gamebody.service.character.MonsterList;
 import com.getulus.charondor.gamebody.service.character.PlayerActions;
 import com.getulus.charondor.gamebody.service.character.PlayerList;
+import com.getulus.charondor.gamebody.service.tavern.QuestList;
 import com.getulus.charondor.gamebody.templates.CombatLogTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,9 @@ public class CombatActions {
     @Autowired
     ItemList itemList;
 
+    @Autowired
+    QuestList questList;
+
 
     public void resolveCombat() {
         fight();
@@ -43,14 +47,15 @@ public class CombatActions {
             //If the player dead get nothing but health.
             //playerActions.regenerate();
         } else {
+            questList.progressQuest();
             playerActions.earnGold();
-            playerActions.earnExperience();
+            playerActions.earnExperience(monsterList.getCurrentMonster().getExperience());
             itemList.setLootedItems(monsterList.getCurrentMonster().getLevel());
             playerActions.loot(itemList.getAvailableItems());
         }
 
         playerRepository.save(playerList.getCurrentPlayer());
-
+        System.out.println(playerList.getCurrentPlayer().toString());
     }
 
 

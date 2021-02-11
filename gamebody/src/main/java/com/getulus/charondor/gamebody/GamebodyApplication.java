@@ -89,6 +89,7 @@ public class GamebodyApplication {
                     .name("Getulus")
                     .experienceNeededForNextLevel(80)
                     .gold(200)
+
                     .experiencePoints(0)
                     .image("/images/warrior.jpeg")
                     .classSymbol("/images/warrioricon.jpg")
@@ -688,7 +689,7 @@ public class GamebodyApplication {
             Quest killSomeWolfs = Quest.builder()
                     .progress(0)
                     .completed(false)
-                    .experience(400)
+                    .experience(100)
                     .gold(340)
                     .monsterName("Werewolf")
                     .itemName("")
@@ -697,6 +698,60 @@ public class GamebodyApplication {
                     .build();
 
             questRepository.saveAndFlush(killSomeWolfs);
+
+            Quest killSomeSerpents = Quest.builder()
+                    .progress(0)
+                    .completed(false)
+                    .experience(200)
+                    .gold(200)
+                    .monsterName("Serpent")
+                    .itemName("")
+                    .questName("Kill Some Serpents")
+                    .task(3)
+                    .build();
+
+            questRepository.saveAndFlush(killSomeSerpents);
+
+            Quest slayTheBeastmen = Quest.builder()
+                    .progress(0)
+                    .completed(false)
+                    .experience(150)
+                    .gold(200)
+                    .monsterName("Beast Man")
+                    .itemName("")
+                    .questName("Slay Beastmen")
+                    .task(2)
+                    .build();
+
+            questRepository.saveAndFlush(slayTheBeastmen);
+
+
+            Quest killTheAlphaOgre = Quest.builder()
+                    .progress(0)
+                    .completed(false)
+                    .experience(300)
+                    .gold(300)
+                    .monsterName("Alpha Ogre")
+                    .itemName("")
+                    .questName("Kill The Alpha")
+                    .task(1)
+                    .build();
+
+            questRepository.saveAndFlush(killTheAlphaOgre);
+
+
+            Quest intoTheCave = Quest.builder()
+                    .progress(0)
+                    .completed(false)
+                    .experience(300)
+                    .gold(500)
+                    .monsterName("Cave Spider")
+                    .itemName("")
+                    .questName("Into the Cave")
+                    .task(4)
+                    .build();
+
+            questRepository.saveAndFlush(intoTheCave);
 
         };
 

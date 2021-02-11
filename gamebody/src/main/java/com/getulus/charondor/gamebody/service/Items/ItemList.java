@@ -61,6 +61,9 @@ public class ItemList {
 
     }
 
+
+
+
     public void equipItem(ItemCredentials itemCredentials){
         Optional<Item> optSlotItem = itemRepository.getItemBySlotAndEquipped(itemCredentials.getSlot(), true);
 
@@ -69,7 +72,20 @@ public class ItemList {
             slotItem.setEquipped(false);
             itemRepository.save(slotItem);
             playerList.getCurrentPlayer().unEquipItem(slotItem);
+
+            for (Item item : playerList.getCurrentPlayer().getItems()) {
+                if (item.getItemID() == slotItem.getItemID()) {
+                    item.setEquipped(false);
+                }
+            }
         }
+
+        for (Item item : playerList.getCurrentPlayer().getItems()) {
+            if (item.getItemID() == itemCredentials.getID()) {
+                item.setEquipped(true);
+            }
+        }
+
         Item currentItem = itemRepository.getItemByItemID(itemCredentials.getID()).get();
         currentItem.setEquipped(true);
         itemRepository.save(currentItem);

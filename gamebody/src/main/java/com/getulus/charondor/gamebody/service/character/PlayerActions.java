@@ -50,11 +50,10 @@ public class PlayerActions implements CharacterActions{
     }
 
 
-    public void earnExperience(){
-        double monsterExp = monsterList.getCurrentMonster().getExperience();
+    public void earnExperience(Double expGot){
         double playerExp = playerList.getCurrentPlayer().getExperiencePoints();
         double needForNexLevel = playerList.getCurrentPlayer().getExperienceNeededForNextLevel();
-        double allExp = monsterExp + playerExp;
+        double allExp = expGot + playerExp;
 
         if (allExp > needForNexLevel) {
             leveling();
@@ -62,6 +61,10 @@ public class PlayerActions implements CharacterActions{
         } else {
             playerList.getCurrentPlayer().setExperiencePoints(allExp);
         }
+    }
+
+    private void checkIfLevelUp() {
+
     }
 
 
@@ -116,6 +119,9 @@ public class PlayerActions implements CharacterActions{
     }
 
     public void completeQuest(Quest completedQuest){
+        System.out.println(completedQuest.toString());
+        earnExperience(completedQuest.getExperience());
+        playerList.getCurrentPlayer().setGold(playerList.getCurrentPlayer().getGold() + completedQuest.getGold());
 
     }
 

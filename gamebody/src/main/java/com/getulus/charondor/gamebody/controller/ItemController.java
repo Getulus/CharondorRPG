@@ -130,5 +130,23 @@ public class ItemController {
         }
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/items/get-shop-items")
+    public List<Item> getShopItems(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+
+            return itemRepository.getItemsByPlayerIsNull();
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
 
 }

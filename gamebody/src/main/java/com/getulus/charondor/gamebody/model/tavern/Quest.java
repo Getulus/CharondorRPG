@@ -26,6 +26,7 @@ public class Quest {
         this.completed = completed;
         this.monsterName = monsterName;
         this.itemName = itemName;
+        this.turnedIn = false;
     }
 
     @Id
@@ -44,12 +45,20 @@ public class Quest {
     private boolean completed;
     private String monsterName;
     private String itemName;
+    boolean turnedIn;
 
 
-    public boolean isCompleted() {
+    public void isCompleted() {
         if (task == progress) {
             completed = true;
         }
+    }
+
+    public boolean getCompleted() {
         return completed;
+    }
+
+    public boolean getTurnedIn(){
+        return turnedIn;
     }
 }

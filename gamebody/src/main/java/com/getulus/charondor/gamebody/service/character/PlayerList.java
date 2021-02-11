@@ -2,6 +2,7 @@ package com.getulus.charondor.gamebody.service.character;
 
 import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.model.character.Player;
+import com.getulus.charondor.gamebody.model.tavern.Quest;
 import com.getulus.charondor.gamebody.repository.ItemRepository;
 import com.getulus.charondor.gamebody.repository.PlayerRepository;
 import lombok.AllArgsConstructor;
@@ -40,7 +41,7 @@ public class PlayerList {
         Player newPLayer = playerRepository.getPlayerByType(player.getType()).get();
 
 
-        //newPLayer.setName(player.getName());
+        newPLayer.setName(player.getName());
         currentPlayer = newPLayer;
         playerRepository.save(newPLayer);
     }
@@ -55,13 +56,21 @@ public class PlayerList {
     }
 
     public void addAttributePoint(String attributeName) {
-        switch (attributeName) {
-            case "strength": addStrength();
-            case "stamina": addStamina();
-            case "agility": addAgility();
-            case "wisdom": addWisdom();
-        }
 
+        switch (attributeName) {
+            case "strength":
+                addStrength();
+                break;
+            case "stamina":
+                addStamina();
+                break;
+            case "agility":
+                addAgility();
+                break;
+            case "wisdom":
+                addWisdom();
+                break;
+        }
         savePlayer();
     }
 
@@ -97,6 +106,8 @@ public class PlayerList {
             currentPlayer.getAttributePoints().addAgilityPointPrice();
         }
     }
+
+
 
 
 

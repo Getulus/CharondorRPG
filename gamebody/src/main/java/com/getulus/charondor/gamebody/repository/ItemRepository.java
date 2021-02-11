@@ -19,4 +19,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Optional<Item> getItemBySlotAndEquipped(String slot, Boolean equipped);
 
+    List<Item> getItemsByPlayerIsNull();
 }

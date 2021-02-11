@@ -48,11 +48,12 @@ public class QuestList {
                 .progress(0)
                 .task(currentQuest.getTask())
                 .questName(currentQuest.getQuestName())
+                .player(playerList.getCurrentPlayer())
                 .build();
 
         availableQuests.remove(currentQuest);
-
-        playerList.getCurrentPlayer().getQuests().add(acceptedQuest);
+        playerList.getCurrentPlayer().getQuests().add(currentQuest);
+        questRepository.save(acceptedQuest);
         playerList.savePlayer();
 
     }
@@ -66,16 +67,27 @@ public class QuestList {
 
     public void progressQuest() {
         String monsterName = monsterList.getCurrentMonster().getName();
+        List<Quest> playerQuests = playerList.getCurrentPlayer().getQuests();
 
-        for (Quest quest : playerList.getCurrentPlayer().getQuests()) {
-            if (monsterName.equals(quest.getMonsterName())) {
+        for (Quest quest : playerQuests) {
+            if (monsterName.equals(quest.getMonsterName()) && !quest.getCompleted()) {
                 quest.setProgress(quest.getProgress() + 1);
-                if (quest.isCompleted()) {
-                    playerActions.completeQuest(quest);
-                }
+                quest.isCompleted();
             }
         }
+        playerList.getCurrentPlayer().setQuests(playerQuests);
 
+    }
+
+
+    public void turnInQuest(String questName) {
+        for (Quest quest:playerList.getCurrentPlayer().getQuests()) {
+            if (quest.getQuestName().equals(questName)) {
+                playerActions.completeQuest(quest);
+                quest.setTurnedIn(true);
+            }
+        }
+        playerList.savePlayer();
     }
 
 

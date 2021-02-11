@@ -41,7 +41,8 @@ public class Player extends Character {
         this.gold = gold;
         this.items = new ArrayList<Item>();
         this.classSymbol = classSymbol;
-        this.quests = new ArrayList<>();
+        this.quests = new ArrayList<Quest>();
+
 
     }
 

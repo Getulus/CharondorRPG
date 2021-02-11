@@ -13,4 +13,5 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
 
     Optional<Player> getPlayerByType(String type);
 
+
 }
