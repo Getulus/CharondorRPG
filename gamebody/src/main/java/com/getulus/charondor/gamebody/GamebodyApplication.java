@@ -526,6 +526,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/wooden-hammer.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(woodenHammer);
@@ -548,6 +549,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/necklaceOfStrength.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(necklaceOfStrength);
@@ -569,6 +571,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/iron-shield.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(ironShield);
@@ -590,6 +593,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/iron-helm.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(lightHelmet);
@@ -612,6 +616,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/iron-gloves.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(ironGloves);
@@ -633,6 +638,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/iron-chestplate.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(ironChestplate);
@@ -654,6 +660,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/iron-sword.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(ironSword);
@@ -675,6 +682,7 @@ public class GamebodyApplication {
                     .wisdom(0)
                     .equipped(false)
                     .image("/images/iron-boots.png")
+                    .gold(50)
                     .build();
 
             itemRepository.saveAndFlush(ironBoots);

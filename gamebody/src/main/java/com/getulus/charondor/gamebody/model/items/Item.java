@@ -20,7 +20,7 @@ public class Item {
     @Builder(toBuilder = true)
     public Item(String name, String slot, double level, String rarity, double dropChance, String image, boolean equipped,
                 double stamina, double wisdom, double strength, double agility, double attackValue,
-                double defenseValue, double criticalChance, double armor, double magicResistance,
+                double defenseValue, double criticalChance, double armor, double magicResistance, double gold,
                 Player player) {
         this.name = name;
         this.slot = slot;
@@ -39,6 +39,7 @@ public class Item {
         this.armor = armor;
         this.magicResistance = magicResistance;
         this.player = player;
+        this.gold = gold;
     }
 
     @Id
@@ -65,6 +66,8 @@ public class Item {
     private double criticalChance;
     private double armor;
     private double magicResistance;
+
+    private double gold;
 
 
     @ManyToOne

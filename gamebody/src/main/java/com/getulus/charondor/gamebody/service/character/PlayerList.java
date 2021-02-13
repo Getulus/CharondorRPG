@@ -55,6 +55,10 @@ public class PlayerList {
         playerRepository.save(currentPlayer);
     }
 
+    public void savePlayer(Player player) {
+        playerRepository.save(player);
+    }
+
     public void addAttributePoint(String attributeName) {
 
         switch (attributeName) {

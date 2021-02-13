@@ -97,6 +97,7 @@ public class PlayerActions implements CharacterActions{
                     .strength(currentItem.getStrength())
                     .wisdom(currentItem.getWisdom())
                     .image(currentItem.getImage())
+                    .gold(currentItem.getGold())
                     .equipped(false)
                     .build();
 
@@ -123,6 +124,19 @@ public class PlayerActions implements CharacterActions{
         earnExperience(completedQuest.getExperience());
         playerList.getCurrentPlayer().setGold(playerList.getCurrentPlayer().getGold() + completedQuest.getGold());
 
+    }
+
+    public void removeItemFromInventory(Item currentItem) {
+        Player currentPlayer = playerList.getCurrentPlayer();
+
+        for (Item item : currentPlayer.getItems()) {
+            if (item.getItemID() == currentItem.getItemID()) {
+                currentPlayer.setGold(currentPlayer.getGold() + item.getGold());
+                currentPlayer.getItems().remove(item);
+                break;
+            }
+        }
+        playerRepository.save(currentPlayer);
     }
 
 
