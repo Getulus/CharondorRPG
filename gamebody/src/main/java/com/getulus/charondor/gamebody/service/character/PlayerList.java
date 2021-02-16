@@ -90,6 +90,8 @@ public class PlayerList {
     private void addStamina(){
         if (currentPlayer.getAttributePoints().getStaminaPointPrice() <= currentPlayer.getGold()){
             currentPlayer.setStamina(currentPlayer.getStamina() + 3);
+            currentPlayer.setMaxHealth(currentPlayer.getMaxHealth() + 15);
+            currentPlayer.setCurrentHealth(currentPlayer.getCurrentHealth() + 15);
             currentPlayer.setGold(currentPlayer.getGold() - currentPlayer.getAttributePoints().getStaminaPointPrice());
             currentPlayer.getAttributePoints().addStaminaPointPrice();
         }
@@ -98,6 +100,7 @@ public class PlayerList {
     private void addWisdom(){
         if (currentPlayer.getAttributePoints().getWisdomPointPrice() <= currentPlayer.getGold()){
             currentPlayer.setWisdom(currentPlayer.getWisdom() + 3);
+            currentPlayer.setSoulEnergy(getCurrentPlayer().getSoulEnergy() + 15);
             currentPlayer.setGold(currentPlayer.getGold() - currentPlayer.getAttributePoints().getWisdomPointPrice());
             currentPlayer.getAttributePoints().addWisdomPointPrice();
         }

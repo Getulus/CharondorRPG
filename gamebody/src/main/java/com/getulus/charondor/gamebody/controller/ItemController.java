@@ -115,10 +115,11 @@ public class ItemController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/items/clear-loot")
-    public void clearLoot(HttpServletResponse response){
+    public String clearLoot(HttpServletResponse response){
         try {
             response.setStatus(200);
             itemList.setAvailableItems(null);
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -151,10 +152,11 @@ public class ItemController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/items/sell-item")
-    public void sellItem(@RequestBody Item item, HttpServletResponse response){
+    public String sellItem(@RequestBody Item item, HttpServletResponse response){
         try {
             response.setStatus(200);
             itemList.sellItem(item);
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -169,10 +171,11 @@ public class ItemController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/items/buy-item")
-    public void buyItem(@RequestBody Item item, HttpServletResponse response){
+    public String buyItem(@RequestBody Item item, HttpServletResponse response){
         try {
             response.setStatus(200);
             itemList.buyItem(item);
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

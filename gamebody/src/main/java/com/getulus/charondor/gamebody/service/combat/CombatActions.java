@@ -60,8 +60,7 @@ public class CombatActions {
 
 
     public void fight() {
-        Monster currentMonster = monsterList.getRandomMonster();
-        monsterList.setCurrentMonster(currentMonster);
+        Monster currentMonster = monsterList.getCurrentMonster();
 
         double monsterHealth = currentMonster.getMaxHealth();
         double playerHealth = playerList.getCurrentPlayer().getCurrentHealth();

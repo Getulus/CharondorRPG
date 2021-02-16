@@ -51,11 +51,11 @@ public class PlayerController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/character/regenerate")
-    public void regenerate(HttpServletResponse response){
+    public String regenerate(HttpServletResponse response){
         try {
             response.setStatus(200);
             playerActions.regenerate();
-
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -88,12 +88,12 @@ public class PlayerController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/character/change-name")
-    public void changeName(@RequestBody Player player, HttpServletResponse response){
+    public String changeName(@RequestBody Player player, HttpServletResponse response){
         try {
             response.setStatus(200);
 
             playerList.getCurrentPlayer().setName(player.getName());
-
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -107,10 +107,11 @@ public class PlayerController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/character/player/add-attribute")
-    public void addAttributePoint(@RequestBody AttributeCredentials attributeCredentials, HttpServletResponse response){
+    public String addAttributePoint(@RequestBody AttributeCredentials attributeCredentials, HttpServletResponse response){
         try {
             response.setStatus(200);
             playerList.addAttributePoint(attributeCredentials.getAttributeName());
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

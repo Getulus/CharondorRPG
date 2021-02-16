@@ -92,6 +92,7 @@ public class Player extends Character {
         this.soulEnergy += 20;
         this.maxHealth += 100;
 
+
         this.experienceNeededForNextLevel *= 2;
 
     }
@@ -105,6 +106,9 @@ public class Player extends Character {
     public void unEquipItem(Item item) {
         agility -= item.getAgility();
         stamina -= item.getStamina();
+        maxHealth -= item.getStamina() * 5;
+        currentHealth -= item.getStamina() * 5;
+        soulEnergy -= item.getWisdom() * 5;
         strength -= item.getStrength();
         armor -= item.getArmor();
         attackValue -= item.getAttackValue();
@@ -116,6 +120,9 @@ public class Player extends Character {
     public void equipItem(Item item) {
         agility += item.getAgility();
         stamina += item.getStamina();
+        maxHealth += item.getStamina() * 5;
+        currentHealth += item.getStamina() * 5;
+        soulEnergy += item.getWisdom() *5;
         strength += item.getStrength();
         armor += item.getArmor();
         attackValue += item.getAttackValue();
@@ -123,5 +130,6 @@ public class Player extends Character {
         defenseValue += item.getDefenseValue();
         wisdom += item.getWisdom();
     }
+
 
 }

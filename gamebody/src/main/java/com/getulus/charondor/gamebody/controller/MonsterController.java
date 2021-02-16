@@ -2,6 +2,7 @@ package com.getulus.charondor.gamebody.controller;
 
 
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
+import com.getulus.charondor.gamebody.model.advantures.Adventure;
 import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
 import com.getulus.charondor.gamebody.service.character.MonsterList;
@@ -42,5 +43,27 @@ public class MonsterController {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
     }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/character/random-monster")
+    public Monster getRandomMonster(HttpServletResponse response){
+        try {
+            response.setStatus(200);
+            Monster currentMonster = monsterList.getRandomMonster();
+            monsterList.setCurrentMonster(currentMonster);
+            return currentMonster;
+        } catch (IllegalArgumentException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IllegalArgumentException("Illegal arguments in players list");
+        } catch (IndexOutOfBoundsException e) {
+            response.setStatus(400);
+            exceptionLog.log(e);
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+    }
+
+
+
 
 }

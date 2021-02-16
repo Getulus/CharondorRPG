@@ -15,6 +15,29 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Character {
 
+
+    public Character(String type, double level, double currentHealth, double maxHealth, double soulEnergy,
+                     Set<Skill> skills, double attackValue, double defenseValue, double criticalChance,
+                     double armor, double magicResistance, double stamina, double wisdom, double strength,
+                     double agility, String image) {
+        this.type = type;
+        this.level = level;
+        this.stamina = stamina;
+        this.currentHealth = currentHealth;
+        this.maxHealth = this.maxHealth + (stamina * 10);
+        this.soulEnergy = soulEnergy;
+        this.skills = skills;
+        this.attackValue = attackValue;
+        this.defenseValue = defenseValue;
+        this.criticalChance = criticalChance;
+        this.armor = armor;
+        this.magicResistance = magicResistance;
+        this.wisdom = wisdom;
+        this.strength = strength;
+        this.agility = agility;
+        this.image = image;
+    }
+
     //character info
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,6 +79,7 @@ public abstract class Character {
     protected double agility;
 
     protected String image;
+
 
 
 }

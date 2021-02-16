@@ -29,10 +29,11 @@ public class CombatController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/action/combat")
-    public void combat(HttpServletResponse response){
+    public String combat(HttpServletResponse response){
         try {
             response.setStatus(200);
             combatActions.resolveCombat();
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -69,10 +70,11 @@ public class CombatController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/action/clear-combat-log")
-    public void clearCombatLog(HttpServletResponse response){
+    public String clearCombatLog(HttpServletResponse response){
         try {
             response.setStatus(200);
             combatLogList.setCombatLog(null);
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);

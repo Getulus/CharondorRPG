@@ -2,8 +2,10 @@ package com.getulus.charondor.gamebody.controller;
 
 import com.getulus.charondor.gamebody.logger.ExceptionLog;
 import com.getulus.charondor.gamebody.model.advantures.AdventureNameCredential;
+import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.repository.AdventureRepository;
 import com.getulus.charondor.gamebody.service.Adventures.AdventureList;
+import com.getulus.charondor.gamebody.service.character.MonsterList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +23,20 @@ public class AdventuresController {
     @Autowired
     ExceptionLog exceptionLog;
 
+    @Autowired
+    MonsterList monsterList;
+
     @CrossOrigin(origins = "*")
     @PostMapping("/adventure/set-adventure")
-    public void getAdventure(@RequestBody AdventureNameCredential adventureName, HttpServletResponse response){
+    public Monster getAdventure(@RequestBody AdventureNameCredential adventureName, HttpServletResponse response){
         try {
             response.setStatus(200);
             adventureList.setCurrentAdventure(adventureRepository.getAdventureByName(adventureName.getName()).get());
+
+            Monster monster = monsterList.getRandomMonster();
+            monsterList.setCurrentMonster(monster);
+
+            return monsterList.getCurrentMonster();
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
@@ -40,10 +50,11 @@ public class AdventuresController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/adventure/clear-adventure")
-    public void clearAdventures(HttpServletResponse response){
+    public String clearAdventures(HttpServletResponse response){
         try {
             response.setStatus(200);
             adventureList.setCurrentAdventure(null);
+            return "OK";
         } catch (IllegalArgumentException e) {
             response.setStatus(400);
             exceptionLog.log(e);
