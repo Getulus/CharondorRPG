@@ -1,7 +1,7 @@
 package com.getulus.charondor.gamebody.service.character;
 
 
-import com.getulus.charondor.gamebody.model.character.Skill;
+import com.getulus.charondor.gamebody.model.character.Skills.Skill;
 
 public interface CharacterActions {
 

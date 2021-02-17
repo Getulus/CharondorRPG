@@ -1,5 +1,8 @@
 package com.getulus.charondor.gamebody;
 
+import com.getulus.charondor.gamebody.model.character.Skills.OffensiveInstantSkill;
+import com.getulus.charondor.gamebody.model.character.Skills.OffensiveInstantSpell;
+import com.getulus.charondor.gamebody.model.character.Skills.Skill;
 import com.getulus.charondor.gamebody.model.items.Item;
 import com.getulus.charondor.gamebody.model.character.Monster;
 import com.getulus.charondor.gamebody.model.character.Player;
@@ -21,6 +24,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.List;
 
 @EnableEurekaClient
 @SpringBootApplication
@@ -54,6 +59,9 @@ public class GamebodyApplication {
 
     @Autowired
     QuestRepository questRepository;
+
+    @Autowired
+    SkillRepository skillRepository;
 
 
     public static void main(String[] args) {
@@ -89,13 +97,98 @@ public class GamebodyApplication {
                     .name("Getulus")
                     .experienceNeededForNextLevel(80)
                     .gold(200)
-
                     .experiencePoints(0)
                     .image("/images/warrior.jpeg")
                     .classSymbol("/images/warrioricon.jpg")
                     .build();
 
+            OffensiveInstantSkill heroicStrike = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/heroicstrike.png")
+                    .name("Heroic Strike")
+                    .player(warrior)
+                    .text("Strike with fury deal 125% of your attack value instantly")
+                    .type("Physical")
+                    .build();
+
+            OffensiveInstantSkill shieldWall = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/shieldwall.png")
+                    .name("Shield Wall")
+                    .player(warrior)
+                    .text("Increase your armor by 25% for this fight")
+                    .type("Physical")
+                    .build();
+
+            OffensiveInstantSkill precision = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/precision.png")
+                    .name("Precision")
+                    .player(warrior)
+                    .text("Increase your critical chance by 15% for this fight")
+                    .type("Physical")
+                    .build();
+
+            OffensiveInstantSkill berserk = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/berserk.png")
+                    .name("Berserk")
+                    .player(warrior)
+                    .text("Increase your strength by 10% for this fight")
+                    .type("Physical")
+                    .build();
+
+            OffensiveInstantSkill disarm = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/disarm.png")
+                    .name("Disarm")
+                    .player(warrior)
+                    .text("Decrease enemy's strength by 15% for this fight")
+                    .type("Physical")
+                    .build();
+
+            OffensiveInstantSkill rend = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/rend.png")
+                    .name("Rend")
+                    .player(warrior)
+                    .text("Deal 10% of your attack value to teh enemy after every hit")
+                    .type("Physical")
+                    .build();
+
+            OffensiveInstantSkill meditate = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.25)
+                    .energyCost(40)
+                    .image("/images/skills/meditate.png")
+                    .name("Meditate")
+                    .player(warrior)
+                    .text("Restore 100 health points")
+                    .type("Physical")
+                    .build();
+
+
+            OffensiveInstantSkill fireball = OffensiveInstantSkill.builder()
+                    .damageMultiplier(1.35)
+                    .energyCost(60)
+                    .image("/images/skills/fireball.png")
+                    .name("Fireball")
+                    .text("Shoot a fireball to the enemy, deal 135% of your attack value + 50% of your wisdom damage")
+                    .player(warrior)
+                    .type("Magical")
+                    .build();
+
+            List<Skill> skillsOfWarrior = Arrays.asList(heroicStrike,fireball, meditate, precision, rend, berserk, shieldWall, disarm);
+
+            warrior.setSkills(skillsOfWarrior);
+
             playerRepository.saveAndFlush(warrior);
+            skillRepository.saveAll(skillsOfWarrior);
             playerList.setCurrentPlayer(warrior);
 
             Player shadowStriker = Player.builder()

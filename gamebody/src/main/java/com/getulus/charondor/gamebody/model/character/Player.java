@@ -1,5 +1,6 @@
 package com.getulus.charondor.gamebody.model.character;
 
+import com.getulus.charondor.gamebody.model.character.Skills.Skill;
 import com.getulus.charondor.gamebody.model.items.Item;
 import com.getulus.charondor.gamebody.model.tavern.Quest;
 import lombok.*;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @DynamicUpdate
 @Entity
@@ -27,10 +29,10 @@ public class Player extends Character {
                   double attackValue, double defenseValue, double criticalChance,
                   double armor, double magicResistance,
                   double stamina, double wisdom, double strength, double agility, String image, String name, double experiencePoints,
-                  double experienceNeededForNextLevel, double gold, String classSymbol, Set<Skill> skills)
+                  double experienceNeededForNextLevel, double gold, String classSymbol)
     {
         super(
-                ID, type, level, currentHealth, maxHealth, soulEnergy, skills,   attackValue, defenseValue,
+                ID, type, level, currentHealth, maxHealth, soulEnergy,  attackValue, defenseValue,
                 criticalChance, armor, magicResistance, stamina, wisdom, strength, agility, image
         );
 
@@ -42,6 +44,7 @@ public class Player extends Character {
         this.items = new ArrayList<Item>();
         this.classSymbol = classSymbol;
         this.quests = new ArrayList<Quest>();
+        this.skills = new ArrayList<Skill>();
 
 
     }
@@ -75,6 +78,13 @@ public class Player extends Character {
     @ToString.Exclude
     @LazyCollection(LazyCollectionOption.FALSE)
     protected List<Quest> quests;
+
+    @Singular
+    @OneToMany(mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @LazyCollection(LazyCollectionOption.FALSE)
+    protected List<Skill> skills;
 
 
     public void increaseAttributesByLeveling() {

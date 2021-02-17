@@ -1,5 +1,6 @@
 package com.getulus.charondor.gamebody.model.character;
 
+import com.getulus.charondor.gamebody.model.character.Skills.Skill;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -17,7 +18,7 @@ public abstract class Character {
 
 
     public Character(String type, double level, double currentHealth, double maxHealth, double soulEnergy,
-                     Set<Skill> skills, double attackValue, double defenseValue, double criticalChance,
+                     double attackValue, double defenseValue, double criticalChance,
                      double armor, double magicResistance, double stamina, double wisdom, double strength,
                      double agility, String image) {
         this.type = type;
@@ -26,7 +27,6 @@ public abstract class Character {
         this.currentHealth = currentHealth;
         this.maxHealth = this.maxHealth + (stamina * 10);
         this.soulEnergy = soulEnergy;
-        this.skills = skills;
         this.attackValue = attackValue;
         this.defenseValue = defenseValue;
         this.criticalChance = criticalChance;
@@ -52,12 +52,7 @@ public abstract class Character {
     protected double maxHealth;
     protected double soulEnergy;
 
-    @Singular
-    @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @LazyCollection(LazyCollectionOption.FALSE)
-    protected Set<Skill> skills;
+
 
 
     protected double attackValue;
